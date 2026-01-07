@@ -10,45 +10,47 @@ import {
     Code2,
     Zap,
     ShieldCheck,
-    Terminal
+    Terminal,
+    Brain,
+    Users
 } from 'lucide-react';
 
 const skills = [
     {
-        category: 'Architecture',
-        icon: <Layers size={24} />,
-        description: 'System design and scalable infrastructure.',
-        items: ['Microservices', 'Event-Driven', 'Cloud Native', 'Serverless']
-    },
-    {
-        category: 'Backend',
-        icon: <Server size={24} />,
-        description: 'High-performance API and logic layers.',
-        items: ['Rust', 'Go', 'Node.js', 'PostgreSQL', 'Redis', 'Kafka']
-    },
-    {
-        category: 'Frontend',
-        icon: <Cpu size={24} />,
-        description: 'Immersive and performant interfaces.',
-        items: ['Next.js', 'React', 'TypeScript', 'Framer Motion', 'WebGPU']
-    },
-    {
-        category: 'DevOps',
-        icon: <Globe size={24} />,
-        description: 'Automated deployment and operations.',
-        items: ['Kubernetes', 'Docker', 'Terraform', 'CI/CD', 'AWS / GCP']
-    },
-    {
-        category: 'Languages',
+        category: 'Programming',
         icon: <Code2 size={24} />,
-        description: 'Proficiency in diverse programming syntax.',
-        items: ['C++', 'Rust', 'TypeScript', 'Python', 'Zig']
+        description: 'Core languages and web technologies.',
+        items: ['C', 'Python', 'Java', 'C++', 'JavaScript', 'HTML', 'CSS']
     },
     {
-        category: 'Security',
+        category: 'Frameworks & Tools',
+        icon: <Layers size={24} />,
+        description: 'Building modern and scalable applications.',
+        items: ['React', 'Next.js', 'FastAPI', 'Flutter', 'TensorFlow', 'MySQL', 'PHP']
+    },
+    {
+        category: 'Cybersecurity',
         icon: <ShieldCheck size={24} />,
-        description: 'Hardening and protective measures.',
-        items: ['OAuth', 'JWT', 'Encryption', 'Pentesting', 'SecOps']
+        description: 'Information security and vulnerability assessment.',
+        items: ['Information Security', 'Vulnerability Assessment', 'CWE-287 identification']
+    },
+    {
+        category: 'Machine Learning',
+        icon: <Brain size={24} />,
+        description: 'Data science and intelligent systems.',
+        items: ['NLP', 'Naive Bayes', 'Reinforcement Learning (DQN)', 'TF-IDF']
+    },
+    {
+        category: 'Soft Skills',
+        icon: <Users size={24} />,
+        description: 'Professional collaboration and analysis.',
+        items: ['Communication', 'Teamwork', 'Debugging', 'Requirement Analysis', 'Adaptability']
+    },
+    {
+        category: 'Other',
+        icon: <Zap size={24} />,
+        description: 'Essential development and design skills.',
+        items: ['Git', 'REST APIs', 'UI/UX Basics', 'Mobile App Integration']
     },
 ];
 
@@ -149,7 +151,7 @@ export default function Skills() {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2px', background: 'var(--border-subtle)', marginTop: '32px' }}>
                     {[
                         { name: 'Terminal', desc: 'Warp / iTerm2', icon: <Terminal size={20} /> },
-                        { name: 'IDE', desc: 'VS Code / Cursor', icon: <Zap size={20} /> },
+                        { name: 'IDE', desc: 'VS Code / Cursor / Antigravity', icon: <Zap size={20} /> },
                         { name: 'Design', desc: 'Figma', icon: <Layers size={20} /> },
                         { name: 'Version Control', desc: 'GitHub / GitLab', icon: <Globe size={20} /> },
                     ].map((tool, i) => (

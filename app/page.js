@@ -5,9 +5,12 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, Github, Twitter, Linkedin, Terminal, Zap, Globe } from 'lucide-react';
 import Link from 'next/link';
 import Clock from './components/Clock';
+import { getPortfolioStats } from './utils/stats';
 
 
 export default function Home() {
+  const stats = getPortfolioStats();
+
   const containerVariants = {
     initial: { opacity: 0 },
     animate: {
@@ -84,7 +87,7 @@ export default function Home() {
             <motion.button
               className="luxury-button"
               style={{ background: 'transparent', color: 'var(--text-primary)', border: '1px solid var(--border-medium)' }}
-              whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.05)' }}
+              whileHover={{ scale: 1.05, backgroundColor: 'var(--border-subtle)' }}
               whileTap={{ scale: 0.95 }}
             >
               GET IN TOUCH
@@ -109,7 +112,7 @@ export default function Home() {
           <div className="luxury-card" style={{ padding: '40px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
               <span className="section-label">Experience</span>
-              <h2 style={{ fontSize: '48px', fontWeight: 800 }}>08+</h2>
+              <h2 style={{ fontSize: '48px', fontWeight: 800 }}>{Math.floor(stats.experienceYears).toString().padStart(2, '0')}+</h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '13px' }}>Years of engineering expertise</p>
             </div>
             <Zap size={32} color="var(--text-muted)" />
@@ -121,7 +124,7 @@ export default function Home() {
           <div className="luxury-card" style={{ padding: '32px' }}>
             <Terminal size={24} style={{ marginBottom: '24px', opacity: 0.5 }} />
             <span className="section-label" style={{ fontSize: '10px' }}>Projects</span>
-            <h3 style={{ fontSize: '20px' }}>12+ Units</h3>
+            <h3 style={{ fontSize: '20px' }}>{stats.projectsCount} Units</h3>
           </div>
         </Link>
 
@@ -130,7 +133,7 @@ export default function Home() {
           <div className="luxury-card" style={{ padding: '32px' }}>
             <Globe size={24} style={{ marginBottom: '24px', opacity: 0.5 }} />
             <span className="section-label" style={{ fontSize: '10px' }}>Case Studies</span>
-            <h3 style={{ fontSize: '20px' }}>4 Detailed</h3>
+            <h3 style={{ fontSize: '20px' }}>{stats.caseStudiesCount} Detailed</h3>
           </div>
         </Link>
 
@@ -141,7 +144,7 @@ export default function Home() {
             whileHover={{ y: -5, scale: 1.01 }}
             style={{
               padding: '24px 32px',
-              background: 'rgba(255, 255, 255, 0.02)',
+              background: 'var(--luxury-card-bg, rgba(255, 255, 255, 0.02))',
               backdropFilter: 'blur(10px)',
               border: '1px solid var(--border-subtle)',
               position: 'relative',
@@ -175,10 +178,10 @@ export default function Home() {
 
               <div style={{ flex: 1 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-                  <div style={{ width: '24px', height: '24px', background: 'white', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Zap size={14} color="black" fill="black" />
+                  <div style={{ width: '24px', height: '24px', background: 'var(--text-primary)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Zap size={14} color="var(--bg-primary)" fill="var(--bg-primary)" />
                   </div>
-                  <span className="section-label" style={{ marginBottom: 0, fontSize: '9px', color: 'rgba(255,255,255,0.7)', fontWeight: 800 }}>THEME LAB</span>
+                  <span className="section-label" style={{ marginBottom: 0, fontSize: '9px', color: 'var(--text-secondary)', fontWeight: 800 }}>THEME LAB</span>
                 </div>
 
                 <h3 style={{
@@ -210,7 +213,7 @@ export default function Home() {
                 justifyContent: 'center',
                 background: 'rgba(255,255,255,0.03)'
               }}>
-                <ArrowUpRight size={18} color="white" opacity={0.5} />
+                <ArrowUpRight size={18} color="var(--text-primary)" opacity={0.5} />
               </div>
             </div>
           </motion.div>

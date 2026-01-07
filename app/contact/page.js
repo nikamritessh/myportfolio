@@ -41,7 +41,7 @@ export default function Contact() {
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.4 }}
                         className="luxury-card"
-                        style={{ padding: '48px', marginTop: '48px', background: 'rgba(255,255,255,0.02)' }}
+                        style={{ padding: '48px', marginTop: '48px' }}
                     >
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
                             {[
@@ -54,7 +54,7 @@ export default function Contact() {
                                         fontSize: '11px',
                                         textTransform: 'uppercase',
                                         letterSpacing: '0.15em',
-                                        color: focusedField === field.id ? 'white' : 'var(--text-muted)',
+                                        color: focusedField === field.id ? 'var(--text-primary)' : 'var(--text-muted)',
                                         transition: 'color 0.3s'
                                     }}>
                                         {field.label}
@@ -67,7 +67,7 @@ export default function Contact() {
                                             placeholder={field.placeholder}
                                             style={{
                                                 background: 'transparent', border: 'none', borderBottom: '1px solid var(--border-subtle)',
-                                                padding: '12px 0', color: 'white', outline: 'none', fontSize: '18px', resize: 'none',
+                                                padding: '12px 0', color: 'var(--text-primary)', outline: 'none', fontSize: '18px', resize: 'none',
                                                 fontFamily: 'inherit', transition: 'border-color 0.3s'
                                             }}
                                         />
@@ -79,20 +79,20 @@ export default function Contact() {
                                             placeholder={field.placeholder}
                                             style={{
                                                 background: 'transparent', border: 'none', borderBottom: '1px solid var(--border-subtle)',
-                                                padding: '12px 0', color: 'white', outline: 'none', fontSize: '18px',
+                                                padding: '12px 0', color: 'var(--text-primary)', outline: 'none', fontSize: '18px',
                                                 transition: 'border-color 0.3s'
                                             }}
                                         />
                                     )}
                                     <motion.div
                                         animate={{ width: focusedField === field.id ? '100%' : '0%' }}
-                                        style={{ position: 'absolute', bottom: 0, height: '1px', background: 'white', zIndex: 1 }}
+                                        style={{ position: 'absolute', bottom: 0, height: '1px', background: 'var(--text-primary)', zIndex: 1 }}
                                     />
                                 </div>
                             ))}
 
                             <motion.button
-                                whileHover={{ scale: 1.02, backgroundColor: '#ffffff', color: '#000000' }}
+                                whileHover={{ scale: 1.02, backgroundColor: 'var(--text-primary)', color: 'var(--bg-primary)' }}
                                 whileTap={{ scale: 0.98 }}
                                 className="luxury-button"
                                 style={{
@@ -100,8 +100,8 @@ export default function Contact() {
                                     width: '100%',
                                     justifyContent: 'center',
                                     background: 'transparent',
-                                    border: '1px solid white',
-                                    color: 'white',
+                                    border: '1px solid var(--text-primary)',
+                                    color: 'var(--text-primary)',
                                     height: '64px'
                                 }}
                             >
@@ -136,7 +136,7 @@ export default function Contact() {
                                     </div>
                                     <div>
                                         <span style={{ display: 'block', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-muted)' }}>{info.label}</span>
-                                        <span style={{ fontSize: '16px', color: 'white', fontWeight: 500 }}>{info.value}</span>
+                                        <span style={{ fontSize: '16px', color: 'var(--text-primary)', fontWeight: 500 }}>{info.value}</span>
                                     </div>
                                 </motion.a>
                             ))}
@@ -154,7 +154,7 @@ export default function Contact() {
                                 ].map((social, i) => (
                                     <motion.div
                                         key={i}
-                                        whileHover={{ backgroundColor: 'rgba(255,255,255,0.05)', borderColor: 'rgba(255,255,255,0.2)' }}
+                                        whileHover={{ backgroundColor: 'var(--border-subtle)', borderColor: 'var(--border-medium)' }}
                                         style={{
                                             padding: '20px', borderRadius: '12px', border: '1px solid var(--border-subtle)',
                                             display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer', transition: 'all 0.3s'
@@ -169,7 +169,7 @@ export default function Contact() {
 
                         {/* Availability Badge */}
                         <div style={{
-                            padding: '24px', borderRadius: '12px', background: 'white', color: 'black',
+                            padding: '24px', borderRadius: '12px', background: 'var(--text-primary)', color: 'var(--bg-primary)',
                             display: 'flex', justifyContent: 'space-between', alignItems: 'center'
                         }}>
                             <div style={{ display: 'flex', flexDirection: 'column' }}>

@@ -6,19 +6,19 @@ import { motion, useSpring } from 'framer-motion';
 export default function CustomCursor() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isHovering, setIsHovering] = useState(false);
+    const [isPressed, setIsPressed] = useState(false);
 
-    const cursorX = useSpring(0, { stiffness: 500, damping: 28 });
-    const cursorY = useSpring(0, { stiffness: 500, damping: 28 });
-    const followerX = useSpring(0, { stiffness: 250, damping: 20 });
-    const followerY = useSpring(0, { stiffness: 250, damping: 20 });
+    const cursorX = useSpring(0, { stiffness: 1000, damping: 40 });
+    const cursorY = useSpring(0, { stiffness: 1000, damping: 40 });
 
     useEffect(() => {
         const handleMouseMove = (e) => {
-            cursorX.set(e.clientX - 6);
-            cursorY.set(e.clientY - 6);
-            followerX.set(e.clientX - 20);
-            followerY.set(e.clientY - 20);
+            cursorX.set(e.clientX);
+            cursorY.set(e.clientY);
         };
+
+        const handleMouseDown = () => setIsPressed(true);
+        const handleMouseUp = () => setIsPressed(false);
 
         const handleMouseOver = (e) => {
             const target = e.target;
@@ -26,7 +26,9 @@ export default function CustomCursor() {
                 target.tagName === 'A' ||
                 target.tagName === 'BUTTON' ||
                 target.closest('.luxury-card') ||
-                target.closest('.nav-item')
+                target.closest('.nav-item') ||
+                target.closest('.creative-project-card') ||
+                target.closest('.mag-icon')
             ) {
                 setIsHovering(true);
             } else {
@@ -36,32 +38,30 @@ export default function CustomCursor() {
 
         window.addEventListener('mousemove', handleMouseMove);
         window.addEventListener('mouseover', handleMouseOver);
+        window.addEventListener('mousedown', handleMouseDown);
+        window.addEventListener('mouseup', handleMouseUp);
 
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('mouseover', handleMouseOver);
+            window.removeEventListener('mousedown', handleMouseDown);
+            window.removeEventListener('mouseup', handleMouseUp);
         };
-    }, [cursorX, cursorY, followerX, followerY]);
+    }, [cursorX, cursorY]);
 
     return (
-        <>
+        <div style={{ pointerEvents: 'none', position: 'fixed', inset: 0, zIndex: 99999 }}>
+            {/* The Precision Dot */}
             <motion.div
-                className="custom-cursor"
+                className="cursor-dot"
                 style={{
                     x: cursorX,
                     y: cursorY,
-                    scale: isHovering ? 2.5 : 1,
+                    translateX: '-50%',
+                    translateY: '-50%',
+                    scale: isHovering ? 1.5 : (isPressed ? 0.8 : 1),
                 }}
             />
-            <motion.div
-                className="custom-cursor-follower"
-                style={{
-                    x: followerX,
-                    y: followerY,
-                    scale: isHovering ? 1.5 : 1,
-                    opacity: isHovering ? 0 : 1,
-                }}
-            />
-        </>
+        </div>
     );
 }

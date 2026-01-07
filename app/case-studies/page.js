@@ -4,51 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { ArrowDown } from 'lucide-react';
-
-const caseStudies = [
-    {
-        id: '01',
-        title: 'Architecting for 10M+ Users',
-        category: 'Infrastructure & Scaling',
-        problem: 'Legacy system could not handle peak traffic, resulting in 15% downtime and cascading failures.',
-        solution: 'Designed a global multi-region mesh architecture with automated health-check failover and distributed edge caching layers.',
-        metrics: [
-            { label: 'Uptime', value: '99.99%' },
-            { label: 'Latency', value: '-40%' },
-            { label: 'Cost', value: '-25%' }
-        ],
-        image: '/case-studies/infra.png',
-        color: '#00f2ff'
-    },
-    {
-        id: '02',
-        title: 'HFT Pipeline Optimization',
-        category: 'Low-Latency Engineering',
-        problem: 'Order execution speed was bottlenecked by system-level garbage collection and synchronous network IO calls.',
-        solution: 'Rewrote core data pipelines in Rust using lock-free ring buffers and zero-copy deserialization for maximum throughput.',
-        metrics: [
-            { label: 'Tail Latency', value: '10μs' },
-            { label: 'Throughput', value: '500k/s' },
-            { label: 'Reliability', value: '100%' }
-        ],
-        image: '/case-studies/finance.png',
-        color: '#ffd700'
-    },
-    {
-        id: '03',
-        title: 'Neural Compute Distribution',
-        category: 'Machine Learning Ops',
-        problem: 'Training large-scale models across distributed clusters faced significant synchronization overhead and data drift.',
-        solution: 'Implemented a custom gradient compression algorithm and switched to an asynchronous parameter server architecture.',
-        metrics: [
-            { label: 'Training Time', value: '-60%' },
-            { label: 'Sync Overhead', value: '-80%' },
-            { label: 'Accuracy', value: '+5%' }
-        ],
-        image: '/case-studies/ml.png',
-        color: '#bd00ff'
-    },
-];
+import { caseStudies } from '../data';
 
 const CaseStudySection = ({ study, index }) => {
     const isEven = index % 2 === 0;
@@ -82,7 +38,10 @@ const CaseStudySection = ({ study, index }) => {
                     transition={{ delay: 0.2, duration: 0.8 }}
                 >
                     <span className="study-id">{study.id}</span>
-                    <span className="study-category" style={{ color: study.color }}>{study.category}</span>
+                    <div className="study-header-meta">
+                        <span className="study-year">{study.year}</span>
+                        <span className="study-category" style={{ color: study.color }}>{study.category}</span>
+                    </div>
                     <h3 className="study-title">{study.title}</h3>
 
                     <div className="study-content-grid">
@@ -91,7 +50,7 @@ const CaseStudySection = ({ study, index }) => {
                             <p className="block-text">{study.problem}</p>
                         </div>
                         <div className="content-block">
-                            <h4 className="block-label">Our Solution</h4>
+                            <h4 className="block-label">The Solution</h4>
                             <p className="block-text">{study.solution}</p>
                         </div>
                     </div>
@@ -105,14 +64,27 @@ const CaseStudySection = ({ study, index }) => {
                         ))}
                     </div>
 
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="luxury-button"
-                        style={{ marginTop: '40px', background: study.color, color: 'black' }}
-                    >
-                        Read Technical Paper
-                    </motion.button>
+                    {study.url && (
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="luxury-button"
+                            style={{ marginTop: '40px', background: study.color, color: 'black' }}
+                            onClick={() => window.open(study.url, '_blank')}
+                        >
+                            Read Research Paper
+                        </motion.button>
+                    )}
+                    {!study.url && (
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="luxury-button acknowledgment-btn"
+                            style={{ marginTop: '40px' }}
+                        >
+                            View Acknowledgment
+                        </motion.button>
+                    )}
                 </motion.div>
             </div>
         </section>
@@ -128,7 +100,7 @@ export default function CaseStudies() {
                     animate={{ opacity: 1 }}
                     className="section-label"
                 >
-                    System Deep-Dives
+                    Impact & Research
                 </motion.span>
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
