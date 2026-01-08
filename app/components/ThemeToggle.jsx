@@ -7,6 +7,16 @@ import { useTheme } from '../context/ThemeContext';
 
 const ThemeToggle = () => {
     const { theme, toggleTheme } = useTheme();
+    const [mounted, setMounted] = React.useState(false);
+
+    React.useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return <div style={{ width: '64px', height: '32px', marginLeft: '12px' }} />;
+    }
+
     const isDark = theme === 'dark';
 
     return (

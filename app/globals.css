@@ -14,6 +14,22 @@
   --font-display: 'Outfit', 'Inter', sans-serif;
 }
 
+/* Restrict transitions to specific elements for performance */
+body,
+.luxury-card,
+.nav-item,
+.nav-container,
+.creative-project-card,
+button,
+a,
+.mag-icon {
+  transition: background-color 0.4s var(--transition-cinematic),
+    color 0.4s var(--transition-cinematic),
+    border-color 0.4s var(--transition-cinematic),
+    transform 0.4s var(--transition-cinematic),
+    box-shadow 0.4s var(--transition-cinematic);
+}
+
 .light-theme {
   --bg-primary: #ffffff;
   --bg-secondary: #f8fafc;
@@ -59,7 +75,6 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: background-color 0.4s var(--transition-cinematic), color 0.4s var(--transition-cinematic), border-color 0.4s var(--transition-cinematic);
 }
 
 body {
@@ -69,8 +84,9 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   -webkit-font-smoothing: antialiased;
+  position: relative;
 }
 
 /* Premium Subtle Scrollbar */
@@ -520,6 +536,30 @@ h4 {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 99px;
   z-index: -1;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 4px;
+}
+
+.mobile-toggle-wrapper {
+  display: none;
+}
+
+.nav-icon {
+  display: none;
+}
+
+.nav-label {
+  display: block;
 }
 
 /* Buttons and Cards */

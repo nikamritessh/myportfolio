@@ -11,7 +11,17 @@ export default function CustomCursor() {
     const cursorX = useSpring(0, { stiffness: 1000, damping: 40 });
     const cursorY = useSpring(0, { stiffness: 1000, damping: 40 });
 
+    const [isMobile, setIsMobile] = useState(false);
+
     useEffect(() => {
+        // Simple check for touch/mobile
+        const checkMobile = () => {
+            setIsMobile(window.matchMedia('(max-width: 768px)').matches || 'ontouchstart' in window);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+
         const handleMouseMove = (e) => {
             cursorX.set(e.clientX);
             cursorY.set(e.clientY);
@@ -42,12 +52,15 @@ export default function CustomCursor() {
         window.addEventListener('mouseup', handleMouseUp);
 
         return () => {
+            window.removeEventListener('resize', checkMobile);
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('mouseover', handleMouseOver);
             window.removeEventListener('mousedown', handleMouseDown);
             window.removeEventListener('mouseup', handleMouseUp);
         };
     }, [cursorX, cursorY]);
+
+    if (isMobile) return null;
 
     return (
         <div style={{ pointerEvents: 'none', position: 'fixed', inset: 0, zIndex: 99999 }}>

@@ -5,15 +5,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Clock as ClockIcon, Globe } from 'lucide-react';
 
 const Clock = () => {
-    const [time, setTime] = useState(new Date());
+    const [time, setTime] = useState(null);
 
     useEffect(() => {
+        setTime(new Date());
         const timer = setInterval(() => {
             setTime(new Date());
         }, 1000);
 
         return () => clearInterval(timer);
     }, []);
+
+    if (!time) {
+        return <div className="luxury-card" style={{ padding: '32px', minHeight: '234px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div className="pulse-dot" />
+        </div>;
+    }
 
     const formatUnit = (unit) => unit.toString().padStart(2, '0');
 
