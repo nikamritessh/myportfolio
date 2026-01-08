@@ -108,28 +108,6 @@ const ProjectCard = ({ project, index, onOpen }) => {
             <div className="project-content">
                 <div className="project-header">
                     <span className="project-year-pill">{project.year}</span>
-                    <div className="project-links">
-                        <motion.a
-                            href={project.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            whileHover={{ scale: 1.2, rotate: -10 }}
-                            className="mag-icon"
-                        >
-                            <Github size={20} />
-                        </motion.a>
-                        <motion.a
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            whileHover={{ scale: 1.2, rotate: 10 }}
-                            className="mag-icon"
-                        >
-                            <ArrowUpRight size={22} />
-                        </motion.a>
-                    </div>
                 </div>
 
                 <div className="project-info">
@@ -160,12 +138,39 @@ const ProjectCard = ({ project, index, onOpen }) => {
                         ))}
                     </div>
 
-                    <motion.div
-                        style={{ marginTop: '24px', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', fontWeight: 800, color: 'rgba(255,255,255,0.5)' }}
-                        whileHover={{ x: 5, color: 'white' }}
-                    >
-                        VIEW CASE STUDY <ArrowUpRight size={14} />
-                    </motion.div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '24px' }}>
+                        <motion.div
+                            style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', fontWeight: 800, color: 'rgba(255,255,255,0.5)' }}
+                            whileHover={{ x: 5, color: 'white' }}
+                        >
+                            VIEW CASE STUDY <ArrowUpRight size={14} />
+                        </motion.div>
+
+                        <div className="project-links" style={{ marginBottom: 0 }}>
+                            <motion.a
+                                href={project.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                whileHover={{ scale: 1.1, rotate: -5 }}
+                                className="mag-icon"
+                                style={{ width: '44px', height: '44px' }}
+                            >
+                                <Github size={20} />
+                            </motion.a>
+                            <motion.a
+                                href={project.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                whileHover={{ scale: 1.1, rotate: 5 }}
+                                className="mag-icon"
+                                style={{ width: '44px', height: '44px' }}
+                            >
+                                <ArrowUpRight size={22} />
+                            </motion.a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </motion.div>
@@ -386,6 +391,26 @@ export default function Projects() {
                             onOpen={setSelectedProject}
                         />
                     ))}
+
+                    {/* Final Explore Card */}
+                    <div className="more-projects-card">
+                        <div className="card-bg-number" style={{ fontSize: '120px', right: '-20px' }}>+</div>
+                        <Github size={48} style={{ marginBottom: '24px', opacity: 0.2 }} />
+                        <h3 style={{ fontSize: '24px', fontWeight: 800, color: 'white', marginBottom: '16px' }}>MORE ON GITHUB</h3>
+                        <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '14px', marginBottom: '32px', maxWidth: '200px' }}>
+                            Explore my other experiments, repositories and open source contributions.
+                        </p>
+                        <motion.a
+                            href="https://github.com/nikamritessh"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="github-explore-btn"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            EXPLORE REPOS <Github size={18} />
+                        </motion.a>
+                    </div>
                 </div>
             </div>
 

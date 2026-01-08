@@ -69,7 +69,7 @@ export default function Home() {
             marginBottom: '56px'
           }}
         >
-          Senior Software Engineer specializing in high-performance distributed systems,
+          Software Engineer specializing in high-performance distributed systems,
           cinematic user interfaces, and the pursuit of engineering excellence.
         </motion.p>
 
@@ -231,9 +231,15 @@ export default function Home() {
           marginTop: '0px'
         }}>
           <div style={{ display: 'flex', gap: '20px' }}>
-            <Github size={18} color="var(--text-secondary)" />
-            <Twitter size={18} color="var(--text-secondary)" />
-            <Linkedin size={18} color="var(--text-secondary)" />
+            <a href="https://github.com/nikamritessh" target="_blank" rel="noopener noreferrer" className="mag-icon" style={{ width: '32px', height: '32px', border: 'none', background: 'transparent' }}>
+              <Github size={18} color="var(--text-secondary)" />
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" className="mag-icon" style={{ width: '32px', height: '32px', border: 'none', background: 'transparent' }}>
+              <Twitter size={18} color="var(--text-secondary)" />
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" className="mag-icon" style={{ width: '32px', height: '32px', border: 'none', background: 'transparent' }}>
+              <Linkedin size={18} color="var(--text-secondary)" />
+            </a>
           </div>
           <span style={{ fontSize: '11px', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>AVAILABLE FOR GLOBAL PROJECTS</span>
         </div>

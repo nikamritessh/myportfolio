@@ -4,8 +4,8 @@ import PageTransition from './components/PageTransition';
 import { ThemeProvider } from './context/ThemeContext';
 
 export const metadata = {
-  title: 'Portfolio | Senior Software Engineer',
-  description: 'A premium futuristic portfolio of a senior software engineer.',
+  title: 'Portfolio | Software Engineer',
+  description: 'A premium futuristic portfolio of a software engineer.',
 };
 
 export default function RootLayout({ children }) {

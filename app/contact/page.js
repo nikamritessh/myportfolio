@@ -147,22 +147,26 @@ export default function Contact() {
                             <span className="section-label">Digital Presence</span>
                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                                 {[
-                                    { icon: <Github size={20} />, name: 'GitHub' },
-                                    { icon: <Twitter size={20} />, name: 'Twitter' },
-                                    { icon: <Linkedin size={20} />, name: 'LinkedIn' },
-                                    { icon: <Send size={20} />, name: 'Telegram' }
+                                    { icon: <Github size={20} />, name: 'GitHub', href: 'https://github.com/nikamritessh' },
+                                    { icon: <Twitter size={20} />, name: 'Twitter', href: '#' },
+                                    { icon: <Linkedin size={20} />, name: 'LinkedIn', href: '#' },
+                                    { icon: <Send size={20} />, name: 'Telegram', href: '#' }
                                 ].map((social, i) => (
-                                    <motion.div
+                                    <motion.a
                                         key={i}
-                                        whileHover={{ backgroundColor: 'var(--border-subtle)', borderColor: 'var(--border-medium)' }}
+                                        href={social.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        whileHover={{ backgroundColor: 'var(--border-subtle)', borderColor: 'var(--border-medium)', y: -2 }}
                                         style={{
                                             padding: '20px', borderRadius: '12px', border: '1px solid var(--border-subtle)',
-                                            display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer', transition: 'all 0.3s'
+                                            display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer', transition: 'all 0.3s',
+                                            textDecoration: 'none', color: 'inherit'
                                         }}
                                     >
                                         <span style={{ color: 'var(--text-secondary)' }}>{social.icon}</span>
                                         <span style={{ fontSize: '13px', fontWeight: 500 }}>{social.name}</span>
-                                    </motion.div>
+                                    </motion.a>
                                 ))}
                             </div>
                         </div>

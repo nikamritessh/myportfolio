@@ -8,7 +8,7 @@ export const projects = [
         image: '/projects/healix.png',
         description: 'AI-powered health companion for anxiety management, symptom checking, and emergency guidance.',
         color: '#3b82f6',
-        github: 'https://github.com',
+        github: 'https://github.com/nikamritessh',
         link: 'https://example.com',
         details: {
             mainDescription: "Healix is an AI-powered healthcare and mental-health companion designed to assist users during moments of uncertainty, anxiety, and medical concern. The platform combines physical health guidance, mental health support, and emergency assistance into a single, unified system.",
@@ -67,7 +67,7 @@ export const projects = [
         image: '/projects/autoniqx.png',
         description: 'AI-powered email automation platform that intelligently manages campaigns, personalizes outreach, and optimizes engagement with minimal human effort.',
         color: '#8b5cf6',
-        github: 'https://github.com',
+        github: 'https://github.com/nikamritessh',
         link: 'https://example.com',
         details: {
             mainDescription: "AUTONIQX is an enterprise-grade AI automation platform designed to simplify and optimize email marketing workflows. The platform uses intelligent automation and AI decision-making to manage campaigns, personalize emails, handle follow-ups, and continuously improve engagement results — all with minimal human intervention.",
@@ -120,7 +120,7 @@ export const projects = [
         image: '/projects/foresense.png',
         description: 'AI-powered resume and job intelligence platform that analyzes resumes, matches them with real jobs, and tracks applications.',
         color: '#10b981',
-        github: 'https://github.com',
+        github: 'https://github.com/nikamritessh',
         link: 'https://example.com',
         details: {
             mainDescription: "FORESENSE is a full-stack, enterprise-grade AI Resume Intelligence platform designed to help job seekers improve their resumes, match with real job opportunities, and track their job applications intelligently.",
@@ -179,7 +179,7 @@ export const projects = [
         image: '/projects/iot.png',
         description: 'Designed a real-time IoT data logging system to collect and store sensor readings on the cloud.',
         color: '#38bdf8',
-        github: 'https://github.com',
+        github: 'https://github.com/nikamritessh',
         link: 'https://example.com',
         details: {
             mainDescription: "Designed a real-time IoT data logging system to collect and store sensor readings on the cloud. The system bridge physical hardware with cloud infrastructure for seamless monitoring.",
@@ -227,7 +227,7 @@ export const projects = [
         image: '/projects/drone.png',
         description: 'Built an AI-driven autonomous drone navigation system using Deep Q-Learning.',
         color: '#8b5cf6',
-        github: 'https://github.com',
+        github: 'https://github.com/nikamritessh',
         link: 'https://example.com',
         details: {
             mainDescription: "Built an AI-driven autonomous drone navigation system using Deep Q-Learning (DQN) for real-time decision making.",
@@ -270,7 +270,7 @@ export const projects = [
         image: '/projects/spam.png',
         description: 'Implemented an NLP-based spam email classification system with real-time detection.',
         color: '#ec4899',
-        github: 'https://github.com',
+        github: 'https://github.com/nikamritessh',
         link: 'https://example.com',
         details: {
             mainDescription: "Implemented an NLP-based spam email classification system using advanced text processing algorithms.",
@@ -313,7 +313,7 @@ export const projects = [
         image: '/projects/security.png',
         description: 'Conducted a security assessment of government websites focusing on authentication mechanisms.',
         color: '#10b981',
-        github: 'https://github.com',
+        github: 'https://github.com/nikamritessh',
         link: 'https://example.com',
         details: {
             mainDescription: "Conducted a security assessment of government websites focusing on authentication mechanisms and discovering critical flaws.",
@@ -356,7 +356,7 @@ export const projects = [
         image: '/projects/restaurant.png',
         description: 'Developed a fully responsive restaurant website with a strong focus on UI/UX.',
         color: '#facc15',
-        github: 'https://github.com',
+        github: 'https://github.com/nikamritessh',
         link: 'https://example.com',
         details: {
             mainDescription: "Developed a fully responsive restaurant website with a strong focus on UI/UX, ensuring a premium digital presence for the brand.",
@@ -399,7 +399,7 @@ export const projects = [
         image: '/projects/banking.png',
         description: 'Developed core banking system functionalities such as account creation, transactions, and balance management.',
         color: '#ef4444',
-        github: 'https://github.com',
+        github: 'https://github.com/nikamritessh',
         link: 'https://example.com',
         details: {
             mainDescription: "Developed core banking system functionalities such as account creation, transactions, and balance management using Java.",
