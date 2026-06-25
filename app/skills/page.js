@@ -17,7 +17,7 @@ export default function SkillsPage() {
         <section className="container page-top">
             <Reveal className="section-head">
                 <span className="eyebrow">Capabilities</span>
-                <h1 className="display" style={{ fontSize: 'clamp(2.5rem, 5vw, 3.75rem)' }}>
+                <h1 className="display">
                     Skills &amp; technologies
                 </h1>
                 <p>
@@ -31,7 +31,7 @@ export default function SkillsPage() {
             </Reveal>
 
             <Reveal>
-                <div className="grid-3" style={{ marginTop: 64 }}>
+                <div className="grid-3 section-after-head">
                     {levels.map((l) => (
                         <div key={l.level} className="card">
                             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>

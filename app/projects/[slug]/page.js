@@ -57,22 +57,22 @@ export default async function ProjectDetail({ params }) {
     return (
         <article className="container page-top">
             {/* Back + header */}
-            <Link href="/projects" className="btn btn-ghost btn-sm" style={{ marginBottom: 24 }}>
+            <Link href="/projects" className="btn btn-ghost btn-sm project-back">
                 <ArrowLeft size={16} /> All projects
             </Link>
 
-            <Reveal>
+            <Reveal className="project-detail-head">
                 <span className="showcase-cat">{project.category}</span>
-                <h1 className="display" style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', marginTop: 12 }}>
+                <h1 className="display">
                     {project.title}
                 </h1>
                 {project.subtitle && (
-                    <p className="body-lg" style={{ marginTop: 12, maxWidth: 680 }}>
+                    <p className="body-lg">
                         {project.subtitle}
                     </p>
                 )}
 
-                <div className="hero-cta" style={{ marginTop: 28 }}>
+                <div className="hero-cta">
                     <a href={project.link} target="_blank" rel="noopener noreferrer" className="btn btn-accent">
                         Live Demo <ExternalLink size={16} />
                     </a>
@@ -84,7 +84,7 @@ export default async function ProjectDetail({ params }) {
 
             {/* Hero image (no crop) */}
             <Reveal delay={0.05}>
-                <div className="detail-hero-image" style={{ marginTop: 40 }}>
+                <div className="detail-hero-image">
                     <SmartImage
                         src={project.image}
                         alt={`${project.title} interface`}
@@ -96,7 +96,7 @@ export default async function ProjectDetail({ params }) {
             </Reveal>
 
             {/* Meta */}
-            <div className="meta-grid" style={{ marginTop: 32 }}>
+            <div className="meta-grid meta-grid--after-hero">
                 <div className="meta-item">
                     <div className="meta-k">Category</div>
                     <div className="meta-v">{project.category}</div>
@@ -116,7 +116,7 @@ export default async function ProjectDetail({ params }) {
             </div>
 
             {/* Body with sticky TOC */}
-            <div className="detail-layout" style={{ marginTop: 56 }}>
+            <div className="detail-layout">
                 <TableOfContents sections={sections} />
 
                 <div>

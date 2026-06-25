@@ -11,6 +11,7 @@ export const site = {
   location: 'Mumbai, India',
   timezone: 'IST (UTC+5:30)',
   url: 'https://riteshnikam.dev',
+  photo: '/pic/ritesh-nikam.jpeg',
   github: {
     url: 'https://github.com/nikamritessh',
     handle: 'nikamritessh',
@@ -22,7 +23,6 @@ export const site = {
   social: {
     github: 'https://github.com/nikamritessh',
     linkedin: 'https://www.linkedin.com/in/ritessh-nikam',
-    email: 'mailto:nikamritesh778@gmail.com',
   },
   availability: {
     status: 'Available',

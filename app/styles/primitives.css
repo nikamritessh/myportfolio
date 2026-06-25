@@ -41,6 +41,99 @@
   padding-top: calc(var(--nav-height) + var(--space-8));
 }
 
+.page-stack {
+  display: grid;
+  gap: var(--space-9);
+  margin-top: var(--space-8);
+}
+
+.page-stack--home {
+  gap: var(--space-7);
+}
+
+.mt-section {
+  margin-top: var(--space-8);
+}
+
+.mt-section-sm {
+  margin-top: var(--space-6);
+}
+
+.section-after-head {
+  margin-top: var(--space-8);
+}
+
+.split-after-title {
+  margin-top: var(--space-5);
+}
+
+.stats-bar--3 {
+  margin-bottom: var(--space-8);
+}
+
+.stats-bar--metrics {
+  margin-top: var(--space-5);
+}
+
+.stats-bar--metrics .stat-num {
+  font-size: 1.5rem;
+}
+
+.contact-hero {
+  text-align: center;
+}
+
+.contact-hero .status-badge {
+  margin: 0 auto;
+}
+
+.contact-hero .display {
+  margin-top: var(--space-5);
+}
+
+.contact-hero .body-lg {
+  margin: var(--space-5) auto 0;
+  max-width: 640px;
+}
+
+.contact-hero .hero-cta {
+  justify-content: center;
+  margin-top: var(--space-5);
+}
+
+.contact-form-section {
+  margin-top: var(--space-8);
+}
+
+.project-back {
+  margin-bottom: var(--space-5);
+}
+
+.project-detail-head .display {
+  margin-top: var(--space-3);
+}
+
+.project-detail-head .body-lg {
+  margin-top: var(--space-3);
+  max-width: 680px;
+}
+
+.project-detail-head .hero-cta {
+  margin-top: var(--space-5);
+}
+
+.detail-hero-image {
+  margin-top: var(--space-7);
+}
+
+.detail-layout {
+  margin-top: var(--space-7);
+}
+
+.meta-grid--after-hero {
+  margin-top: var(--space-6);
+}
+
 .section-head {
   max-width: var(--content-reading);
   margin-bottom: var(--space-7);
@@ -676,7 +769,7 @@
 }
 
 .dark-theme .card {
-  background: var(--color-bg-elevated);
+  background: var(--color-bg-muted);
 }
 
 .dark-theme .card-hover:hover {

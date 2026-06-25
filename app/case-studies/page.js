@@ -13,7 +13,7 @@ export default function CaseStudiesPage() {
         <section className="container page-top">
             <Reveal className="section-head">
                 <span className="eyebrow">Deep dives</span>
-                <h1 className="display" style={{ fontSize: 'clamp(2.5rem, 5vw, 3.75rem)' }}>
+                <h1 className="display">
                     Case studies
                 </h1>
                 <p>
@@ -22,7 +22,7 @@ export default function CaseStudiesPage() {
                 </p>
             </Reveal>
 
-            <div style={{ display: 'grid', gap: 96, marginTop: 64 }}>
+            <div className="page-stack">
                 {caseStudies.map((study, i) => (
                     <Reveal key={study.id}>
                         <article className={`showcase ${i % 2 === 1 ? 'reverse' : ''}`}>
@@ -41,7 +41,7 @@ export default function CaseStudiesPage() {
                                 <span className="showcase-cat">{study.category} · {study.year}</span>
                                 <h2 className="showcase-title">{study.title}</h2>
 
-                                <div className="split-grid" style={{ marginTop: 24 }}>
+                                <div className="split-grid split-after-title">
                                     <div className="note-card">
                                         <div className="note-k">The Challenge</div>
                                         <p>{study.problem}</p>
@@ -52,10 +52,10 @@ export default function CaseStudiesPage() {
                                     </div>
                                 </div>
 
-                                <div className="stats-bar" style={{ gridTemplateColumns: `repeat(${study.metrics.length}, 1fr)`, marginTop: 24 }}>
+                                <div className="stats-bar stats-bar--metrics">
                                     {study.metrics.map((m) => (
                                         <div key={m.label} className="stat-cell">
-                                            <div className="stat-num" style={{ fontSize: '1.5rem' }}>{m.value}</div>
+                                            <div className="stat-num">{m.value}</div>
                                             <div className="stat-text">{m.label}</div>
                                         </div>
                                     ))}

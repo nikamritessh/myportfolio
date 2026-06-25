@@ -23,7 +23,7 @@ export default function ExperiencePage() {
         <section className="container-narrow page-top">
             <Reveal className="section-head">
                 <span className="eyebrow">Career</span>
-                <h1 className="display" style={{ fontSize: 'clamp(2.5rem, 5vw, 3.75rem)' }}>
+                <h1 className="display">
                     Experience
                 </h1>
                 <p>
@@ -33,7 +33,7 @@ export default function ExperiencePage() {
             </Reveal>
 
             <Reveal>
-                <div className="stats-bar" style={{ gridTemplateColumns: 'repeat(3, 1fr)', marginBottom: 56 }}>
+                <div className="stats-bar stats-bar--3">
                     <div className="stat-cell">
                         <div className="stat-num">{total}</div>
                         <div className="stat-text">Total experience</div>
@@ -59,18 +59,16 @@ export default function ExperiencePage() {
                                 <span className="tl-node" />
                                 <div className={`tl-card ${exp.highlight ? 'highlight' : ''}`}>
                                     <div className="tl-head">
-                                        <div style={{ display: 'flex', gap: 16 }}>
+                                        <div className="tl-head-main">
                                             <span className="tl-logo">{iconMap[exp.type] || <Briefcase size={22} />}</span>
                                             <div>
                                                 <div className="tl-role">{exp.role}</div>
                                                 <div className="tl-company">{exp.company} · {exp.location}</div>
                                             </div>
                                         </div>
-                                        <div style={{ textAlign: 'right' }}>
+                                        <div className="tl-head-meta">
                                             <span className="tl-period">{exp.period}</span>
-                                            <div style={{ fontSize: 13, color: 'var(--color-accent)', marginTop: 6, fontWeight: 500 }}>
-                                                {duration}
-                                            </div>
+                                            <div className="tl-duration">{duration}</div>
                                         </div>
                                     </div>
 

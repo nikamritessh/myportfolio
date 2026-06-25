@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, FileText, ArrowRight } from 'lucide-react';
+import { Menu, X, FileText } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import { site } from '../data/site';
 
@@ -37,11 +37,23 @@ const Navbar = () => {
         return () => document.body.classList.remove('scroll-lock');
     }, [open]);
 
+    useEffect(() => {
+        if (!open) return;
+        const onKeyDown = (event) => {
+            if (event.key === 'Escape') setOpen(false);
+        };
+        window.addEventListener('keydown', onKeyDown);
+        return () => window.removeEventListener('keydown', onKeyDown);
+    }, [open]);
+
+    const closeMenu = () => setOpen(false);
+
     const isActive = (path) =>
         path === '/' ? pathname === '/' : pathname.startsWith(path);
 
     return (
-        <header className={`nav-wrap ${scrolled ? 'scrolled' : ''}`}>
+        <>
+        <header className={`nav-wrap ${scrolled ? 'scrolled' : ''} ${open ? 'menu-open' : ''}`}>
             <nav className="nav" aria-label="Primary">
                 <Link href="/" className="nav-logo" aria-label="Home">
                     <span className="nav-logo-mark">RN</span>
@@ -71,43 +83,71 @@ const Navbar = () => {
                     </a>
                     <ThemeToggle />
                     <button
-                        className="nav-menu-btn"
+                        type="button"
+                        className={`nav-menu-btn ${open ? 'is-open' : ''}`}
                         onClick={() => setOpen((v) => !v)}
                         aria-label={open ? 'Close menu' : 'Open menu'}
                         aria-expanded={open}
+                        aria-controls="mobile-nav"
                     >
                         {open ? <X size={20} /> : <Menu size={20} />}
                     </button>
                 </div>
             </nav>
+        </header>
 
-            {open && (
-                <div className="nav-drawer">
-                    {navItems.map((item) => (
-                        <Link
-                            key={item.path}
-                            href={item.path}
-                            className={`nav-link ${isActive(item.path) ? 'active' : ''}`}
+        {open && (
+            <div className="mobile-nav-overlay">
+                <button
+                    type="button"
+                    className="mobile-nav-backdrop"
+                    onClick={closeMenu}
+                    aria-label="Close menu"
+                />
+                <div
+                    id="mobile-nav"
+                    className="mobile-nav-panel"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Mobile navigation"
+                >
+                    <div className="mobile-nav-header">
+                        <span>Menu</span>
+                        <button
+                            type="button"
+                            className="mobile-nav-close"
+                            onClick={closeMenu}
+                            aria-label="Close menu"
                         >
-                            {item.label}
-                        </Link>
-                    ))}
-                    <div className="nav-drawer-cta">
+                            <X size={18} />
+                        </button>
+                    </div>
+                    <nav className="mobile-nav-links" aria-label="Mobile">
+                        {navItems.map((item) => (
+                            <Link
+                                key={item.path}
+                                href={item.path}
+                                className={isActive(item.path) ? 'active' : ''}
+                                onClick={closeMenu}
+                            >
+                                {item.label}
+                            </Link>
+                        ))}
+                    </nav>
+                    <div className="mobile-nav-foot">
                         <a
                             href={site.resumePdf}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="btn btn-primary btn-lg"
+                            onClick={closeMenu}
                         >
-                            <FileText size={16} /> View Resume
+                            <FileText size={14} /> Resume PDF
                         </a>
-                        <Link href="/contact" className="btn btn-accent btn-lg">
-                            Hire Me <ArrowRight className="arrow" size={16} />
-                        </Link>
                     </div>
                 </div>
-            )}
-        </header>
+            </div>
+        )}
+        </>
     );
 };
 

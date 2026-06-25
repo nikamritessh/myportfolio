@@ -17,7 +17,7 @@ export default function ProjectsPage() {
         <section className="container page-top">
             <Reveal className="section-head">
                 <span className="eyebrow">Portfolio</span>
-                <h1 className="display" style={{ fontSize: 'clamp(2.5rem, 5vw, 3.75rem)' }}>
+                <h1 className="display">
                     Selected projects
                 </h1>
                 <p>
@@ -26,7 +26,7 @@ export default function ProjectsPage() {
                 </p>
             </Reveal>
 
-            <div style={{ display: 'grid', gap: 96, marginTop: 64 }}>
+            <div className="page-stack">
                 {projects.map((project, i) => (
                     <Reveal key={project.slug}>
                         <article className={`showcase ${i % 2 === 1 ? 'reverse' : ''}`}>

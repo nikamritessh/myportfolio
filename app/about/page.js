@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import {
     ArrowRight,
     Cpu,
@@ -36,16 +37,25 @@ export default function AboutPage() {
         <>
             <section className="container page-top">
                 <div className="about-hero">
-                    <Reveal className="about-photo">
-                        <div className="about-photo-fallback">RN</div>
+                    <Reveal>
+                        <div className="about-photo">
+                            <Image
+                                src={site.photo}
+                                alt={`Portrait of ${site.name}`}
+                                fill
+                                sizes="(max-width: 900px) 100vw, 360px"
+                                priority
+                                className="about-photo__img"
+                            />
+                        </div>
                     </Reveal>
 
                     <Reveal delay={0.05}>
                         <span className="eyebrow">About me</span>
-                        <h1 className="display" style={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.25rem)', marginTop: 12 }}>
+                        <h1 className="display">
                             I build AI products, not just websites.
                         </h1>
-                        <div className="prose" style={{ marginTop: 24 }}>
+                        <div className="prose mt-section-sm">
                             <p>
                                 I&apos;m Ritesh Nikam, a Full Stack AI Engineer based in Mumbai. I
                                 design and build production-ready AI products — from LLM-powered
@@ -66,7 +76,7 @@ export default function AboutPage() {
                                 products end to end.
                             </p>
                         </div>
-                        <div className="hero-cta" style={{ marginTop: 28 }}>
+                        <div className="hero-cta mt-section-sm">
                             <a
                                 href={site.resumePdf}
                                 target="_blank"

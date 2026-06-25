@@ -13,7 +13,7 @@ import TechTabs from './components/TechTabs';
 import { getProjectsWithSlugs } from './utils/projects';
 import { getPortfolioStats } from './utils/stats';
 import { experiences } from './data';
-import { site } from './data/site';
+import { site, gmailComposeUrl } from './data/site';
 
 const featurePoints = {
     Healix: [
@@ -82,10 +82,10 @@ export default function Home() {
                                 <a className="icon-btn" href={site.github.url} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                                     <Github size={18} />
                                 </a>
-                                <a className="icon-btn" href="#" aria-label="LinkedIn">
+                                <a className="icon-btn" href={site.linkedin.url} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                                     <Linkedin size={18} />
                                 </a>
-                                <a className="icon-btn" href={site.social.email} aria-label="Email">
+                                <a className="icon-btn" href={gmailComposeUrl()} target="_blank" rel="noopener noreferrer" aria-label="Email">
                                     <Mail size={18} />
                                 </a>
                             </div>
@@ -113,7 +113,7 @@ export default function Home() {
                         <h2 className="h-section">Projects</h2>
                     </div>
 
-                    <div style={{ display: 'grid', gap: 72 }}>
+                    <div className="page-stack page-stack--home">
                         {featured.map((project, i) => (
                             <article key={project.slug} className={`showcase ${i % 2 === 1 ? 'reverse' : ''}`}>
                                 <Link
@@ -166,7 +166,7 @@ export default function Home() {
                         ))}
                     </div>
 
-                    <div style={{ marginTop: 48 }}>
+                    <div className="mt-section-sm">
                         <Link href="/projects" className="link-underline">
                             All projects <ArrowRight className="arrow" size={14} />
                         </Link>
@@ -203,7 +203,7 @@ export default function Home() {
                         ))}
                     </div>
 
-                    <div style={{ marginTop: 32 }}>
+                    <div className="mt-section-sm">
                         <Link href="/experience" className="link-underline">
                             Full timeline <ArrowRight className="arrow" size={14} />
                         </Link>

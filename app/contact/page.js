@@ -71,19 +71,19 @@ export default function HireMePage() {
 
     return (
         <>
-            <section className="container-narrow page-top" style={{ textAlign: 'center' }}>
+            <section className="container-narrow page-top contact-hero">
                 <Reveal>
-                    <span className="status-badge" style={{ margin: '0 auto' }}>
+                    <span className="status-badge">
                         <span className="status-dot" /> Available for full-time opportunities
                     </span>
-                    <h1 className="display" style={{ fontSize: 'clamp(2.5rem, 5.5vw, 4rem)', marginTop: 24 }}>
+                    <h1 className="display">
                         Let&apos;s build something great together
                     </h1>
-                    <p className="body-lg" style={{ margin: '20px auto 0', maxWidth: 640 }}>
+                    <p className="body-lg">
                         Whether you&apos;re hiring a Full Stack Engineer, AI Engineer, or looking
                         to build AI-powered products, I&apos;d love to hear about your project.
                     </p>
-                    <div className="hero-cta" style={{ justifyContent: 'center', marginTop: 28 }}>
+                    <div className="hero-cta">
                         <a href="#" className="btn btn-accent btn-lg"><Calendar size={17} /> Schedule a Call</a>
                         <a href={site.resumePdf} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg"><FileText size={16} /> View Resume</a>
                         <a href={gmailComposeUrl()} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-lg"><Mail size={16} /> Email Me</a>
@@ -91,7 +91,7 @@ export default function HireMePage() {
                 </Reveal>
             </section>
 
-            <section className="container" style={{ marginTop: 64 }}>
+            <section className="container contact-form-section">
                 <div className="contact-grid">
                     <Reveal>
                         <form className="form card contact-form" onSubmit={onSubmit}>
