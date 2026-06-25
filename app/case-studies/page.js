@@ -1,129 +1,78 @@
-'use client';
-
-import React from 'react';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { ArrowDown } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
+import Reveal from '../components/Reveal';
+import SmartImage from '../components/SmartImage';
 import { caseStudies } from '../data';
 
-const CaseStudySection = ({ study, index }) => {
-    const isEven = index % 2 === 0;
-
-    return (
-        <section className={`case-study-section ${isEven ? 'row' : 'row-reverse'}`}>
-            <div className="study-visual">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9, x: isEven ? -50 : 50 }}
-                    whileInView={{ opacity: 1, scale: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, ease: [0.19, 1, 0.22, 1] }}
-                    className="visual-container"
-                >
-                    <Image
-                        src={study.image}
-                        alt={study.title}
-                        fill
-                        className="study-img"
-                        style={{ objectFit: 'cover' }}
-                    />
-                    <div className="visual-overlay" style={{ background: `linear-gradient(${isEven ? 'to right' : 'to left'}, var(--bg-primary), transparent)` }} />
-                </motion.div>
-            </div>
-
-            <div className="study-details">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2, duration: 0.8 }}
-                >
-                    <span className="study-id">{study.id}</span>
-                    <div className="study-header-meta">
-                        <span className="study-year">{study.year}</span>
-                        <span className="study-category" style={{ color: study.color }}>{study.category}</span>
-                    </div>
-                    <h3 className="study-title">{study.title}</h3>
-
-                    <div className="study-content-grid">
-                        <div className="content-block">
-                            <h4 className="block-label">The Challenge</h4>
-                            <p className="block-text">{study.problem}</p>
-                        </div>
-                        <div className="content-block">
-                            <h4 className="block-label">The Solution</h4>
-                            <p className="block-text">{study.solution}</p>
-                        </div>
-                    </div>
-
-                    <div className="study-metrics-row">
-                        {study.metrics.map((metric, i) => (
-                            <div key={metric.label} className="metric-item">
-                                <span className="metric-value" style={{ color: study.color }}>{metric.value}</span>
-                                <span className="metric-label">{metric.label}</span>
-                            </div>
-                        ))}
-                    </div>
-
-                    {study.url && (
-                        <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="luxury-button"
-                            style={{ marginTop: '40px', background: study.color, color: 'black' }}
-                            onClick={() => window.open(study.url, '_blank')}
-                        >
-                            Read Research Paper
-                        </motion.button>
-                    )}
-                    {!study.url && (
-                        <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="luxury-button acknowledgment-btn"
-                            style={{ marginTop: '40px' }}
-                        >
-                            View Acknowledgment
-                        </motion.button>
-                    )}
-                </motion.div>
-            </div>
-        </section>
-    );
+export const metadata = {
+    title: 'Case Studies',
+    description: 'In-depth case studies — research, security disclosures, and production systems by Ritesh Nikam.',
 };
 
-export default function CaseStudies() {
+export default function CaseStudiesPage() {
     return (
-        <div className="case-studies-page">
-            <div className="case-studies-hero">
-                <motion.span
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="section-label"
-                >
-                    Impact & Research
-                </motion.span>
-                <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="hero-title"
-                >
-                    CASE STUDIES
-                </motion.h2>
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1, repeat: Infinity, duration: 2 }}
-                    className="scroll-hint"
-                >
-                    SCROLL TO EXPLORE <ArrowDown size={14} />
-                </motion.div>
-            </div>
+        <section className="container page-top">
+            <Reveal className="section-head">
+                <span className="eyebrow">Deep dives</span>
+                <h1 className="display" style={{ fontSize: 'clamp(2.5rem, 5vw, 3.75rem)' }}>
+                    Case studies
+                </h1>
+                <p>
+                    Detailed looks at complex problems I&apos;ve solved — from published
+                    research to verified security disclosures with measurable impact.
+                </p>
+            </Reveal>
 
-            <div className="studies-container">
+            <div style={{ display: 'grid', gap: 96, marginTop: 64 }}>
                 {caseStudies.map((study, i) => (
-                    <CaseStudySection key={study.id} study={study} index={i} />
+                    <Reveal key={study.id}>
+                        <article className={`showcase ${i % 2 === 1 ? 'reverse' : ''}`}>
+                            <span className="showcase-media">
+                                <span className="showcase-image">
+                                    <SmartImage
+                                        src={study.image}
+                                        alt={`${study.title} visual`}
+                                        monogram={study.title}
+                                        priority={i === 0}
+                                    />
+                                </span>
+                            </span>
+
+                            <div>
+                                <span className="showcase-cat">{study.category} · {study.year}</span>
+                                <h2 className="showcase-title">{study.title}</h2>
+
+                                <div className="split-grid" style={{ marginTop: 24 }}>
+                                    <div className="note-card">
+                                        <div className="note-k">The Challenge</div>
+                                        <p>{study.problem}</p>
+                                    </div>
+                                    <div className="note-card">
+                                        <div className="note-k">The Solution</div>
+                                        <p>{study.solution}</p>
+                                    </div>
+                                </div>
+
+                                <div className="stats-bar" style={{ gridTemplateColumns: `repeat(${study.metrics.length}, 1fr)`, marginTop: 24 }}>
+                                    {study.metrics.map((m) => (
+                                        <div key={m.label} className="stat-cell">
+                                            <div className="stat-num" style={{ fontSize: '1.5rem' }}>{m.value}</div>
+                                            <div className="stat-text">{m.label}</div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {study.url && (
+                                    <div className="showcase-cta">
+                                        <a href={study.url} target="_blank" rel="noopener noreferrer" className="btn btn-accent">
+                                            Read research paper <ExternalLink size={16} />
+                                        </a>
+                                    </div>
+                                )}
+                            </div>
+                        </article>
+                    </Reveal>
                 ))}
             </div>
-        </div>
+        </section>
     );
 }

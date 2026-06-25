@@ -1,195 +1,204 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Send, Mail, Phone, Github, Twitter, Linkedin, ArrowRight, MapPin } from 'lucide-react';
+import {
+    Mail,
+    Github,
+    Linkedin,
+    Calendar,
+    FileText,
+    ArrowRight,
+    Phone,
+    Check,
+} from 'lucide-react';
+import Link from 'next/link';
+import Reveal from '../components/Reveal';
+import { Select } from '../components/ui';
+import { site, gmailComposeUrl } from '../data/site';
 
-export default function Contact() {
-    const [focusedField, setFocusedField] = useState(null);
+const PROJECT_TYPES = [
+    { value: 'AI Product', label: 'AI Product' },
+    { value: 'Full Stack Web App', label: 'Full Stack Web App' },
+    { value: 'Automation / Integration', label: 'Automation / Integration' },
+    { value: 'Full-time Role', label: 'Full-time Role' },
+    { value: 'Other', label: 'Other' },
+];
 
-    const contactInfo = [
-        { icon: <Mail size={18} />, label: 'Email', value: 'nikamritesh778@gmail.com', href: 'mailto:nikamritesh778@gmail.com' },
-        { icon: <Phone size={18} />, label: 'Mobile', value: '+91 9136788710', href: 'tel:+919136788710' },
-        { icon: <MapPin size={18} />, label: 'Location', value: 'Mumbai, India', href: '#' },
-    ];
+const BUDGET_OPTIONS = [
+    { value: '', label: 'Select range' },
+    { value: 'Under $1k', label: 'Under $1k' },
+    { value: '$1k – $5k', label: '$1k – $5k' },
+    { value: '$5k – $15k', label: '$5k – $15k' },
+    { value: '$15k+', label: '$15k+' },
+    { value: 'Full-time / Salary', label: 'Full-time / Salary' },
+];
+
+const TIMELINE_OPTIONS = [
+    { value: '', label: 'Select timeline' },
+    { value: 'ASAP', label: 'ASAP' },
+    { value: 'Within 1 month', label: 'Within 1 month' },
+    { value: '1 – 3 months', label: '1 – 3 months' },
+    { value: 'Flexible', label: 'Flexible' },
+];
+
+const contactCards = [
+    { icon: <Mail size={16} />, k: 'Email', v: site.email, href: gmailComposeUrl(), external: true },
+    { icon: <Phone size={16} />, k: 'Phone', v: site.phone, href: site.phoneHref, external: false },
+    { icon: <Github size={16} />, k: 'GitHub', v: site.github.handle, href: site.github.url, external: true },
+    { icon: <Linkedin size={16} />, k: 'LinkedIn', v: site.linkedin.label, href: site.linkedin.url, external: true },
+    { icon: <Calendar size={16} />, k: 'Schedule', v: 'Book a call', href: '#', external: false },
+    { icon: <FileText size={16} />, k: 'Resume', v: 'View online', href: site.resumePdf, external: true },
+];
+
+export default function HireMePage() {
+    const [form, setForm] = useState({
+        name: '', email: '', company: '', role: '',
+        projectType: 'AI Product', budget: '', timeline: '', message: '',
+    });
+
+    const setField = (key) => (value) => setForm((f) => ({ ...f, [key]: value }));
+
+    const update = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const subject = `Project inquiry from ${form.name || 'website'}`;
+        const body =
+            `Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nRole: ${form.role}\n` +
+            `Project type: ${form.projectType}\nBudget: ${form.budget}\nTimeline: ${form.timeline}\n\n${form.message}`;
+        window.open(gmailComposeUrl({ subject, body }), '_blank', 'noopener,noreferrer');
+    };
 
     return (
-        <div className="content-center">
-            <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '80px', alignItems: 'flex-start' }}>
+        <>
+            <section className="container-narrow page-top" style={{ textAlign: 'center' }}>
+                <Reveal>
+                    <span className="status-badge" style={{ margin: '0 auto' }}>
+                        <span className="status-dot" /> Available for full-time opportunities
+                    </span>
+                    <h1 className="display" style={{ fontSize: 'clamp(2.5rem, 5.5vw, 4rem)', marginTop: 24 }}>
+                        Let&apos;s build something great together
+                    </h1>
+                    <p className="body-lg" style={{ margin: '20px auto 0', maxWidth: 640 }}>
+                        Whether you&apos;re hiring a Full Stack Engineer, AI Engineer, or looking
+                        to build AI-powered products, I&apos;d love to hear about your project.
+                    </p>
+                    <div className="hero-cta" style={{ justifyContent: 'center', marginTop: 28 }}>
+                        <a href="#" className="btn btn-accent btn-lg"><Calendar size={17} /> Schedule a Call</a>
+                        <a href={site.resumePdf} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg"><FileText size={16} /> View Resume</a>
+                        <a href={gmailComposeUrl()} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-lg"><Mail size={16} /> Email Me</a>
+                    </div>
+                </Reveal>
+            </section>
 
-                {/* Left Side: Creative Intro & Form */}
-                <div>
-                    <motion.span
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        className="section-label"
-                    >
-                        Communication Terminal
-                    </motion.span>
-                    <motion.h2
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="hero-title"
-                        style={{ fontSize: 'clamp(40px, 8vw, 100px)', marginBottom: '32px' }}
-                    >
-                        LET'S START <br /> A CONVERSATION
-                    </motion.h2>
-
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.4 }}
-                        className="luxury-card"
-                        style={{ padding: '48px', marginTop: '48px' }}
-                    >
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-                            {[
-                                { id: 'name', label: 'Who are you?', placeholder: 'Enter your name' },
-                                { id: 'email', label: 'Where can I reach you?', placeholder: 'Enter your email address' },
-                                { id: 'message', label: 'What is on your mind?', placeholder: 'Tell me about your project or just say hi', area: true }
-                            ].map((field) => (
-                                <div key={field.id} style={{ display: 'flex', flexDirection: 'column', gap: '12px', position: 'relative' }}>
-                                    <label style={{
-                                        fontSize: '11px',
-                                        textTransform: 'uppercase',
-                                        letterSpacing: '0.15em',
-                                        color: focusedField === field.id ? 'var(--text-primary)' : 'var(--text-muted)',
-                                        transition: 'color 0.3s'
-                                    }}>
-                                        {field.label}
-                                    </label>
-                                    {field.area ? (
-                                        <textarea
-                                            onFocus={() => setFocusedField(field.id)}
-                                            onBlur={() => setFocusedField(null)}
-                                            rows="4"
-                                            placeholder={field.placeholder}
-                                            style={{
-                                                background: 'transparent', border: 'none', borderBottom: '1px solid var(--border-subtle)',
-                                                padding: '12px 0', color: 'var(--text-primary)', outline: 'none', fontSize: '18px', resize: 'none',
-                                                fontFamily: 'inherit', transition: 'border-color 0.3s'
-                                            }}
-                                        />
-                                    ) : (
-                                        <input
-                                            onFocus={() => setFocusedField(field.id)}
-                                            onBlur={() => setFocusedField(null)}
-                                            type="text"
-                                            placeholder={field.placeholder}
-                                            style={{
-                                                background: 'transparent', border: 'none', borderBottom: '1px solid var(--border-subtle)',
-                                                padding: '12px 0', color: 'var(--text-primary)', outline: 'none', fontSize: '18px',
-                                                transition: 'border-color 0.3s'
-                                            }}
-                                        />
-                                    )}
-                                    <motion.div
-                                        animate={{ width: focusedField === field.id ? '100%' : '0%' }}
-                                        style={{ position: 'absolute', bottom: 0, height: '1px', background: 'var(--text-primary)', zIndex: 1 }}
+            <section className="container" style={{ marginTop: 64 }}>
+                <div className="contact-grid">
+                    <Reveal>
+                        <form className="form card contact-form" onSubmit={onSubmit}>
+                            <div className="form-row">
+                                <div className="field">
+                                    <label htmlFor="name">Name</label>
+                                    <input id="name" className="input" placeholder="Your name" value={form.name} onChange={update('name')} required />
+                                </div>
+                                <div className="field">
+                                    <label htmlFor="email">Email</label>
+                                    <input id="email" type="email" className="input" placeholder="you@company.com" value={form.email} onChange={update('email')} required />
+                                </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="field">
+                                    <label htmlFor="company">Company</label>
+                                    <input id="company" className="input" placeholder="Company / Org" value={form.company} onChange={update('company')} />
+                                </div>
+                                <div className="field">
+                                    <label htmlFor="role">Your Role</label>
+                                    <input id="role" className="input" placeholder="e.g. Founder, Recruiter" value={form.role} onChange={update('role')} />
+                                </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="field">
+                                    <label htmlFor="projectType">Project Type</label>
+                                    <Select
+                                        id="projectType"
+                                        value={form.projectType}
+                                        onChange={setField('projectType')}
+                                        options={PROJECT_TYPES}
                                     />
                                 </div>
-                            ))}
-
-                            <motion.button
-                                whileHover={{ scale: 1.02, backgroundColor: 'var(--text-primary)', color: 'var(--bg-primary)' }}
-                                whileTap={{ scale: 0.98 }}
-                                className="luxury-button"
-                                style={{
-                                    marginTop: '16px',
-                                    width: '100%',
-                                    justifyContent: 'center',
-                                    background: 'transparent',
-                                    border: '1px solid var(--text-primary)',
-                                    color: 'var(--text-primary)',
-                                    height: '64px'
-                                }}
-                            >
-                                TRANSMIT MESSAGE <ArrowRight size={18} style={{ marginLeft: '12px' }} />
-                            </motion.button>
-                        </div>
-                    </motion.div>
-                </div>
-
-                {/* Right Side: Contact Details & Socials */}
-                <div style={{ marginTop: '140px' }}>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '64px' }}>
-
-                        {/* Direct Contact */}
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-                            <span className="section-label">Direct Lines</span>
-                            {contactInfo.map((info, i) => (
-                                <motion.a
-                                    key={i}
-                                    href={info.href}
-                                    initial={{ opacity: 0, x: 20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 0.5 + (i * 0.1) }}
-                                    style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '20px', group: 'true' }}
-                                >
-                                    <div style={{
-                                        width: '48px', height: '48px', borderRadius: '50%', border: '1px solid var(--border-subtle)',
-                                        display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)',
-                                        transition: 'all 0.3s'
-                                    }}>
-                                        {info.icon}
-                                    </div>
-                                    <div>
-                                        <span style={{ display: 'block', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-muted)' }}>{info.label}</span>
-                                        <span style={{ fontSize: '16px', color: 'var(--text-primary)', fontWeight: 500 }}>{info.value}</span>
-                                    </div>
-                                </motion.a>
-                            ))}
-                        </div>
-
-                        {/* Social Matrix */}
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-                            <span className="section-label">Digital Presence</span>
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                                {[
-                                    { icon: <Github size={20} />, name: 'GitHub', href: 'https://github.com/nikamritessh' },
-                                    { icon: <Twitter size={20} />, name: 'Twitter', href: '#' },
-                                    { icon: <Linkedin size={20} />, name: 'LinkedIn', href: '#' },
-                                    { icon: <Send size={20} />, name: 'Telegram', href: '#' }
-                                ].map((social, i) => (
-                                    <motion.a
-                                        key={i}
-                                        href={social.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        whileHover={{ backgroundColor: 'var(--border-subtle)', borderColor: 'var(--border-medium)', y: -2 }}
-                                        style={{
-                                            padding: '20px', borderRadius: '12px', border: '1px solid var(--border-subtle)',
-                                            display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer', transition: 'all 0.3s',
-                                            textDecoration: 'none', color: 'inherit'
-                                        }}
-                                    >
-                                        <span style={{ color: 'var(--text-secondary)' }}>{social.icon}</span>
-                                        <span style={{ fontSize: '13px', fontWeight: 500 }}>{social.name}</span>
-                                    </motion.a>
-                                ))}
+                                <div className="field">
+                                    <label htmlFor="budget">Budget</label>
+                                    <Select
+                                        id="budget"
+                                        value={form.budget}
+                                        onChange={setField('budget')}
+                                        options={BUDGET_OPTIONS}
+                                        placeholder="Select range"
+                                    />
+                                </div>
                             </div>
-                        </div>
-
-                        {/* Availability Badge */}
-                        <div style={{
-                            padding: '24px', borderRadius: '12px', background: 'var(--text-primary)', color: 'var(--bg-primary)',
-                            display: 'flex', justifyContent: 'space-between', alignItems: 'center'
-                        }}>
-                            <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                <span style={{ fontSize: '10px', textTransform: 'uppercase', fontWeight: 700, opacity: 0.6 }}>Local Time</span>
-                                <span style={{ fontSize: '18px', fontWeight: 800 }}>{new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })} IST</span>
+                            <div className="field">
+                                <label htmlFor="timeline">Timeline</label>
+                                <Select
+                                    id="timeline"
+                                    value={form.timeline}
+                                    onChange={setField('timeline')}
+                                    options={TIMELINE_OPTIONS}
+                                    placeholder="Select timeline"
+                                />
                             </div>
-                            <div style={{ textAlign: 'right' }}>
-                                <span style={{ fontSize: '10px', textTransform: 'uppercase', fontWeight: 700, opacity: 0.6 }}>Status</span>
-                                <span style={{ fontSize: '14px', fontWeight: 800, display: 'block' }}>AVAILABLE</span>
+                            <div className="field">
+                                <label htmlFor="message">Message</label>
+                                <textarea id="message" className="textarea" placeholder="Tell me about your project, role, or what you're trying to build..." value={form.message} onChange={update('message')} required />
                             </div>
-                        </div>
+                            <button type="submit" className="btn btn-accent btn-lg" style={{ width: '100%' }}>
+                                Send message <ArrowRight className="arrow" size={17} />
+                            </button>
+                        </form>
+                    </Reveal>
 
+                    <div className="contact-aside">
+                        <Reveal>
+                            <div className="contact-panel">
+                                <h3 className="contact-panel__title">Availability</h3>
+                                <div className="avail-row"><span className="k">Status</span><span className="chip-yes"><Check size={13} /> Available</span></div>
+                                <div className="avail-row"><span className="k">Remote</span><span className="v">Yes</span></div>
+                                <div className="avail-row"><span className="k">Hybrid</span><span className="v">Yes</span></div>
+                                <div className="avail-row"><span className="k">Relocation</span><span className="v">Open</span></div>
+                                <div className="avail-row"><span className="k">Timezone</span><span className="v">IST</span></div>
+                                <div className="avail-row"><span className="k">Response</span><span className="v">24h</span></div>
+                            </div>
+                        </Reveal>
+
+                        <Reveal delay={0.06}>
+                            <div className="contact-panel">
+                                <h3 className="contact-panel__title">Contact</h3>
+                                <div className="contact-links">
+                                    {contactCards.map((c) => {
+                                        const inner = (
+                                            <>
+                                                <span className="cc-icon">{c.icon}</span>
+                                                <span className="cc-text">
+                                                    <span className="cc-k">{c.k}</span>
+                                                    <span className="cc-v">{c.v}</span>
+                                                </span>
+                                            </>
+                                        );
+                                        if (c.external) {
+                                            return (
+                                                <a key={c.k} href={c.href} target="_blank" rel="noopener noreferrer" className="contact-link">{inner}</a>
+                                            );
+                                        }
+                                        if (c.href.startsWith('/')) {
+                                            return <Link key={c.k} href={c.href} className="contact-link">{inner}</Link>;
+                                        }
+                                        return <a key={c.k} href={c.href} className="contact-link">{inner}</a>;
+                                    })}
+                                </div>
+                            </div>
+                        </Reveal>
                     </div>
                 </div>
-
-            </div>
-        </div>
+            </section>
+        </>
     );
 }

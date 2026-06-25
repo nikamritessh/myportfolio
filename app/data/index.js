@@ -455,9 +455,9 @@ export const experiences = [
     {
         company: 'Omiyo (UK Company)',
         role: 'Software Developer (Contract)',
-        period: 'Dec 2025 — Present',
+        period: 'Dec 2025 — Jun 2026',
         startDate: '2025-12-01',
-        endDate: null,
+        endDate: '2026-06-25',
         location: 'Remote (UK)',
         type: 'globe',
         description: 'Developing AsiansVibe, a social media community platform for asians abroad and businesses.',
@@ -499,6 +499,81 @@ export const experiences = [
             'Gained experience with modern frameworks in an agile development environment.'
         ],
         tags: ['Frontend', 'VAPT', 'Security', 'Agile']
+    },
+];
+
+export const techCategories = [
+    {
+        id: 'frontend',
+        label: 'Frontend',
+        items: [
+            { name: 'React', icon: 'react', years: '3', level: 'Expert' },
+            { name: 'Next.js', icon: 'nextjs', years: '3', level: 'Expert' },
+            { name: 'JavaScript', icon: 'javascript', years: '4', level: 'Expert' },
+            { name: 'TypeScript', icon: 'typescript', years: '2', level: 'Advanced' },
+            { name: 'Tailwind CSS', icon: 'tailwindcss', years: '3', level: 'Expert' },
+            { name: 'Framer Motion', icon: 'framermotion', years: '2', level: 'Advanced' },
+            { name: 'HTML5', icon: 'html5', years: '4', level: 'Expert' },
+            { name: 'CSS3', icon: 'css3', years: '4', level: 'Expert' },
+        ],
+    },
+    {
+        id: 'backend',
+        label: 'Backend',
+        items: [
+            { name: 'FastAPI', icon: 'fastapi', years: '3', level: 'Expert' },
+            { name: 'Python', icon: 'python', years: '4', level: 'Expert' },
+            { name: 'Node.js', icon: 'nodejs', years: '2', level: 'Advanced' },
+            { name: 'PHP', icon: 'php', years: '2', level: 'Intermediate' },
+            { name: 'Java', icon: 'java', years: '3', level: 'Advanced' },
+            { name: 'REST APIs', icon: 'fastapi', years: '3', level: 'Expert' },
+        ],
+    },
+    {
+        id: 'ai',
+        label: 'AI & LLMs',
+        items: [
+            { name: 'OpenAI GPT-4', icon: 'openai', years: '2', level: 'Expert' },
+            { name: 'LangChain', icon: 'langchain', years: '2', level: 'Advanced' },
+            { name: 'RAG Architecture', icon: 'openai', years: '2', level: 'Advanced' },
+            { name: 'TensorFlow', icon: 'tensorflow', years: '2', level: 'Advanced' },
+            { name: 'NLP', icon: 'python', years: '2', level: 'Advanced' },
+            { name: 'Voice AI / TTS', icon: 'openai', years: '1', level: 'Advanced' },
+        ],
+    },
+    {
+        id: 'database',
+        label: 'Database',
+        items: [
+            { name: 'PostgreSQL', icon: 'postgresql', years: '3', level: 'Expert' },
+            { name: 'MySQL', icon: 'mysql', years: '3', level: 'Advanced' },
+            { name: 'Supabase', icon: 'supabase', years: '2', level: 'Advanced' },
+            { name: 'SQLAlchemy', icon: 'sqlalchemy', years: '2', level: 'Advanced' },
+            { name: 'Prisma', icon: 'prisma', years: '2', level: 'Advanced' },
+        ],
+    },
+    {
+        id: 'cloud',
+        label: 'Cloud & DevOps',
+        items: [
+            { name: 'Docker', icon: 'docker', years: '2', level: 'Advanced' },
+            { name: 'Vercel', icon: 'vercel', years: '3', level: 'Expert' },
+            { name: 'Render', icon: 'render', years: '2', level: 'Advanced' },
+            { name: 'Git', icon: 'git', years: '4', level: 'Expert' },
+            { name: 'GitHub', icon: 'github', years: '4', level: 'Expert' },
+            { name: 'MQTT', icon: 'mqtt', years: '1', level: 'Intermediate' },
+        ],
+    },
+    {
+        id: 'tools',
+        label: 'Tools',
+        items: [
+            { name: 'VS Code', icon: 'vscode', years: '4', level: 'Expert' },
+            { name: 'Cursor', icon: 'cursor', years: '1', level: 'Advanced' },
+            { name: 'Figma', icon: 'figma', years: '2', level: 'Advanced' },
+            { name: 'Flutter', icon: 'flutter', years: '2', level: 'Advanced' },
+            { name: 'Postman', icon: 'postman', years: '3', level: 'Advanced' },
+        ],
     },
 ];
 

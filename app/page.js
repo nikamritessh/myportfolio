@@ -1,316 +1,231 @@
-'use client';
-
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowUpRight, Github, Twitter, Linkedin, Terminal, Zap, Globe } from 'lucide-react';
 import Link from 'next/link';
-import Clock from './components/Clock';
+import {
+    ArrowRight,
+    Github,
+    Linkedin,
+    Mail,
+    FileText,
+    ExternalLink,
+} from 'lucide-react';
+import Reveal from './components/Reveal';
+import SmartImage from './components/SmartImage';
+import TechTabs from './components/TechTabs';
+import { getProjectsWithSlugs } from './utils/projects';
 import { getPortfolioStats } from './utils/stats';
+import { experiences } from './data';
+import { site } from './data/site';
 
+const featurePoints = {
+    Healix: [
+        'Real-time CBT-based AI therapy with crisis detection',
+        'Voice-first companion for panic and anxiety moments',
+        'Symptom checker with severity risk analysis',
+    ],
+    AUTONIQX: [
+        'AI decision logic that runs entire email campaigns',
+        'Personalized content generation at scale',
+        'No-code visual workflow builder with RAG chatbot',
+    ],
+    FORESENSE: [
+        'ATS resume analysis with explainable AI feedback',
+        'Real job matching engine from live postings',
+        'B2B dashboards for HR and academy teams',
+    ],
+};
 
 export default function Home() {
-  const stats = getPortfolioStats();
+    const projects = getProjectsWithSlugs();
+    const featured = projects.slice(0, 3);
+    const heroProject = projects[1];
+    const recentRoles = experiences.slice(0, 3);
+    const stats = getPortfolioStats();
 
-  const containerVariants = {
-    initial: { opacity: 0 },
-    animate: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.3
-      }
-    }
-  };
+    return (
+        <>
+            <section className="container page-top home-hero">
+                <div className="hero">
+                    <div>
+                        <h1 className="hero-name">{site.name}</h1>
+                        <p className="hero-role">{site.title} · {site.location}</p>
 
-  const itemVariants = {
-    initial: { opacity: 0, y: 30 },
-    animate: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.645, 0.045, 0.355, 1]
-      }
-    }
-  };
+                        <p className="hero-title">
+                            LLM products, voice AI, and automation — shipped end to end
+                            with FastAPI, Next.js, and production infrastructure.
+                        </p>
 
-  return (
-    <div className="content-center" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.5fr) minmax(0, 1fr)', gap: '64px', alignItems: 'center' }}>
+                        <p className="hero-desc">
+                            Currently at Singularity Technologies on OutCallerAI.
+                            I own features from API design and model integration through
+                            to the interface users actually touch.
+                        </p>
 
-      {/* Left Column: Hero Content */}
-      <motion.div
-        variants={containerVariants}
-        initial="initial"
-        animate="animate"
-      >
-        <motion.div variants={itemVariants} style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '32px' }}>
-          <div style={{ width: '40px', height: '1px', background: 'var(--text-muted)' }} />
-          <span className="section-label" style={{ marginBottom: 0 }}>RITESH NIKAM / ARCHITECT</span>
-          <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--accent)', boxShadow: '0 0 15px var(--accent)' }} />
-        </motion.div>
+                        <p className="hero-facts">
+                            {stats.projectsCount} projects · {stats.experienceLabel} experience
+                        </p>
 
-        <motion.h1
-          variants={itemVariants}
-          className="hero-title"
-          style={{ marginBottom: '40px' }}
-        >
-          DEFINING <br />
-          THE EDGE OF <br />
-          POSSIBILITY.
-        </motion.h1>
+                        <div className="hero-cta">
+                            <Link href="/projects" className="btn btn-primary btn-lg">
+                                View projects <ArrowRight className="arrow" size={16} />
+                            </Link>
+                            <a
+                                href={site.resumePdf}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn btn-secondary btn-lg"
+                            >
+                                <FileText size={16} /> Resume
+                            </a>
+                        </div>
 
-        <motion.p
-          variants={itemVariants}
-          style={{
-            fontSize: '18px',
-            color: 'var(--text-secondary)',
-            maxWidth: '540px',
-            lineHeight: 1.6,
-            marginBottom: '56px'
-          }}
-        >
-          Software Engineer specializing in high-performance distributed systems,
-          cinematic user interfaces, and the pursuit of engineering excellence.
-        </motion.p>
+                        <div className="hero-meta">
+                            <div className="hero-socials">
+                                <a className="icon-btn" href={site.github.url} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                                    <Github size={18} />
+                                </a>
+                                <a className="icon-btn" href="#" aria-label="LinkedIn">
+                                    <Linkedin size={18} />
+                                </a>
+                                <a className="icon-btn" href={site.social.email} aria-label="Email">
+                                    <Mail size={18} />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-        <motion.div variants={itemVariants} style={{ display: 'flex', gap: '20px' }}>
-          <Link href="/projects" style={{ textDecoration: 'none' }}>
-            <motion.button
-              className="luxury-button"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              EXPLORE WORKS <ArrowUpRight size={18} />
-            </motion.button>
-          </Link>
-          <Link href="/contact" style={{ textDecoration: 'none' }}>
-            <motion.button
-              className="luxury-button"
-              style={{ background: 'transparent', color: 'var(--text-primary)', border: '1px solid var(--border-medium)' }}
-              whileHover={{ scale: 1.05, backgroundColor: 'var(--border-subtle)' }}
-              whileTap={{ scale: 0.95 }}
-            >
-              GET IN TOUCH
-            </motion.button>
-          </Link>
-        </motion.div>
-      </motion.div>
-
-      {/* Right Column: Creative Feature Grid */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}
-      >
-        {/* Digital Clock */}
-        <div style={{ gridColumn: 'span 2' }}>
-          <Clock />
-        </div>
-
-        {/* Experience Card */}
-        <Link href="/experience" style={{ textDecoration: 'none', gridColumn: 'span 2' }}>
-          <div className="luxury-card" style={{ padding: '40px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div>
-              <span className="section-label">Experience</span>
-              <h2 style={{ fontSize: '48px', fontWeight: 800 }}>{Math.floor(stats.experienceYears).toString().padStart(2, '0')}+</h2>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '13px' }}>Years of engineering expertise</p>
-            </div>
-            <Zap size={32} color="var(--text-muted)" />
-          </div>
-        </Link>
-
-        {/* Projects Preview */}
-        <Link href="/projects" style={{ textDecoration: 'none' }}>
-          <div className="luxury-card" style={{ padding: '32px' }}>
-            <Terminal size={24} style={{ marginBottom: '24px', opacity: 0.5 }} />
-            <span className="section-label" style={{ fontSize: '10px' }}>Projects</span>
-            <h3 style={{ fontSize: '20px' }}>{stats.projectsCount} Units</h3>
-          </div>
-        </Link>
-
-        {/* Global Reach */}
-        <Link href="/case-studies" style={{ textDecoration: 'none' }}>
-          <div className="luxury-card" style={{ padding: '32px' }}>
-            <Globe size={24} style={{ marginBottom: '24px', opacity: 0.5 }} />
-            <span className="section-label" style={{ fontSize: '10px' }}>Case Studies</span>
-            <h3 style={{ fontSize: '20px' }}>{stats.caseStudiesCount} Detailed</h3>
-          </div>
-        </Link>
-
-        {/* Theme Lab Creative Card - Compact Rectangle */}
-        <Link href="/theme-lab" style={{ textDecoration: 'none', gridColumn: 'span 2' }}>
-          <motion.div
-            className="luxury-card theme-lab-card"
-            whileHover={{ y: -5, scale: 1.01 }}
-            style={{
-              padding: '24px 32px',
-              background: 'var(--luxury-card-bg, rgba(255, 255, 255, 0.02))',
-              backdropFilter: 'blur(10px)',
-              border: '1px solid var(--border-subtle)',
-              position: 'relative',
-              overflow: 'hidden',
-              display: 'flex',
-              alignItems: 'center',
-              borderRadius: '20px',
-              minHeight: '140px'
-            }}
-          >
-            {/* Visual background splash */}
-            <div style={{
-              position: 'absolute',
-              right: '-20px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              width: '180px',
-              height: '180px',
-              background: 'radial-gradient(circle, rgba(147, 51, 234, 0.15) 0%, transparent 70%)',
-              filter: 'blur(30px)',
-              pointerEvents: 'none'
-            }} />
-
-            <div style={{ position: 'relative', zIndex: 1, display: 'flex', gap: '32px', width: '100%', alignItems: 'center' }}>
-              {/* Scaled down Vertical Emojis */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px', opacity: 0.8 }}>
-                <span>🎨</span>
-                <span>⚡</span>
-                <span>✨</span>
-              </div>
-
-              <div style={{ flex: 1 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-                  <div style={{ width: '24px', height: '24px', background: 'var(--text-primary)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Zap size={14} color="var(--bg-primary)" fill="var(--bg-primary)" />
-                  </div>
-                  <span className="section-label" style={{ marginBottom: 0, fontSize: '9px', color: 'var(--text-secondary)', fontWeight: 800 }}>THEME LAB</span>
+                    <div className="hero-visual">
+                        <div className="hero-shot">
+                            <SmartImage
+                                src={heroProject.image}
+                                alt={`${heroProject.title} product screenshot`}
+                                monogram={heroProject.title}
+                                priority
+                                sizes="(max-width: 900px) 100vw, 520px"
+                            />
+                        </div>
+                    </div>
                 </div>
+            </section>
 
-                <h3 style={{
-                  fontSize: '28px',
-                  fontWeight: 900,
-                  letterSpacing: '-0.02em',
-                  background: 'linear-gradient(to right, #a855f7, #e879f9)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  lineHeight: 1,
-                  textTransform: 'uppercase'
-                }}>
-                  Creative Customization
-                </h3>
+            <section className="section">
+                <div className="container">
+                    <div className="section-head">
+                        <span className="eyebrow">Selected work</span>
+                        <h2 className="h-section">Projects</h2>
+                    </div>
 
-                <p style={{ color: 'var(--text-secondary)', fontSize: '13px', lineHeight: 1.5, maxWidth: '400px', marginTop: '6px', opacity: 0.8 }}>
-                  Real-time design system playground. Adjust architecture density and visual identity.
-                </p>
-              </div>
+                    <div style={{ display: 'grid', gap: 72 }}>
+                        {featured.map((project, i) => (
+                            <article key={project.slug} className={`showcase ${i % 2 === 1 ? 'reverse' : ''}`}>
+                                <Link
+                                    href={`/projects/${project.slug}`}
+                                    className="showcase-media"
+                                    aria-label={`Open ${project.title} case study`}
+                                >
+                                    <span className="showcase-image">
+                                        <SmartImage
+                                            src={project.image}
+                                            alt={`${project.title} screenshot`}
+                                            monogram={project.title}
+                                        />
+                                    </span>
+                                </Link>
 
-              {/* Minimalist Action Indicator */}
-              <div style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
-                border: '1px solid rgba(255,255,255,0.1)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: 'rgba(255,255,255,0.03)'
-              }}>
-                <ArrowUpRight size={18} color="var(--text-primary)" opacity={0.5} />
-              </div>
-            </div>
-          </motion.div>
-        </Link>
+                                <div>
+                                    <span className="showcase-cat">{project.category} · {project.year}</span>
+                                    <h3 className="showcase-title">{project.title}</h3>
+                                    <p className="showcase-desc">
+                                        {project.details?.mainDescription || project.description}
+                                    </p>
 
-        <div style={{
-          gridColumn: 'span 2',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: '24px',
-          border: '1px solid var(--border-subtle)',
-          borderRadius: '16px',
-          background: 'rgba(255,255,255,0.01)',
-          marginTop: '0px'
-        }}>
-          <div style={{ display: 'flex', gap: '20px' }}>
-            <a href="https://github.com/nikamritessh" target="_blank" rel="noopener noreferrer" className="mag-icon" style={{ width: '32px', height: '32px', border: 'none', background: 'transparent' }}>
-              <Github size={18} color="var(--text-secondary)" />
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="mag-icon" style={{ width: '32px', height: '32px', border: 'none', background: 'transparent' }}>
-              <Twitter size={18} color="var(--text-secondary)" />
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="mag-icon" style={{ width: '32px', height: '32px', border: 'none', background: 'transparent' }}>
-              <Linkedin size={18} color="var(--text-secondary)" />
-            </a>
-          </div>
-          <span style={{ fontSize: '11px', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>AVAILABLE FOR GLOBAL PROJECTS</span>
-        </div>
-      </motion.div>
+                                    {featurePoints[project.title] && (
+                                        <ul className="showcase-list">
+                                            {featurePoints[project.title].map((p) => (
+                                                <li key={p}>{p}</li>
+                                            ))}
+                                        </ul>
+                                    )}
 
-      <style jsx>{`
-        .theme-lab-card:hover .blob {
-          transform: scale(1.4) translate(-10%, -10%);
-          filter: blur(50px);
-          opacity: 0.4;
-        }
+                                    <div className="showcase-tags">
+                                        {project.tags.slice(0, 4).map((t) => (
+                                            <span key={t} className="tag">{t}</span>
+                                        ))}
+                                    </div>
 
-        .theme-lab-card:hover .f-item {
-            transform: translateY(-20px) rotate(15deg);
-            opacity: 1;
-        }
-        
-        .card-blobs {
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 60%;
-          height: 100%;
-          pointer-events: none;
-        }
-        
-        .blob {
-          position: absolute;
-          width: 120px;
-          height: 120px;
-          border-radius: 50%;
-          filter: blur(40px);
-          opacity: 0.15;
-          transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        
-        .b1 { top: -20px; right: 20px; background: #3b82f6; }
-        .b2 { bottom: -20px; right: 100px; background: #ec4899; }
-        .b3 { top: 60px; right: -20px; background: #10b981; }
+                                    <div className="showcase-cta">
+                                        <Link href={`/projects/${project.slug}`} className="link-underline">
+                                            Read case study <ArrowRight className="arrow" size={14} />
+                                        </Link>
+                                        {project.github && (
+                                            <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-sm">
+                                                <Github size={15} /> Code
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
 
-        .floating-elements {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-        }
+                    <div style={{ marginTop: 48 }}>
+                        <Link href="/projects" className="link-underline">
+                            All projects <ArrowRight className="arrow" size={14} />
+                        </Link>
+                    </div>
+                </div>
+            </section>
 
-        .f-item {
-            position: absolute;
-            font-size: 24px;
-            opacity: 0.3;
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-      `}</style>
+            <section className="section section-alt">
+                <div className="container">
+                    <div className="section-head">
+                        <span className="eyebrow">Stack</span>
+                        <h2 className="h-section">Technologies</h2>
+                    </div>
+                    <TechTabs />
+                </div>
+            </section>
 
-      {/* Background Year Highlight */}
-      <motion.div
-        style={{
-          position: 'fixed',
-          right: '-10%',
-          bottom: '-10%',
-          fontSize: '35vw',
-          fontWeight: 900,
-          color: 'var(--text-primary)',
-          opacity: 0.02,
-          pointerEvents: 'none',
-          zIndex: -1,
-          lineHeight: 1
-        }}
-      >
-        2026
-      </motion.div>
-    </div >
-  );
+            <section className="section">
+                <div className="container">
+                    <div className="section-head">
+                        <span className="eyebrow">Background</span>
+                        <h2 className="h-section">Experience</h2>
+                    </div>
+
+                    <div className="exp-preview">
+                        {recentRoles.map((exp) => (
+                            <div key={exp.company + exp.role} className="exp-preview-row">
+                                <div>
+                                    <div className="exp-preview-role">{exp.role}</div>
+                                    <div className="exp-preview-co">{exp.company}</div>
+                                </div>
+                                <div className="exp-preview-period">{exp.period}</div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div style={{ marginTop: 32 }}>
+                        <Link href="/experience" className="link-underline">
+                            Full timeline <ArrowRight className="arrow" size={14} />
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
+            <section className="section section-tight">
+                <div className="container">
+                    <div className="cta-band">
+                        <div>
+                            <h2>Open to full-time roles and contract work</h2>
+                            <p>Reach out if you&apos;re building an AI product or hiring an engineer.</p>
+                        </div>
+                        <div className="hero-cta">
+                            <Link href="/contact" className="btn btn-primary">
+                                Get in touch <ArrowRight className="arrow" size={15} />
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </>
+    );
 }
