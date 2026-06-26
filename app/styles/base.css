@@ -88,6 +88,8 @@ main {
 #main-content {
   background: transparent;
   border-radius: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* —— Typography scale —— */
