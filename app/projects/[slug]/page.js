@@ -74,7 +74,7 @@ export default async function ProjectDetail({ params }) {
 
                 <div className="hero-cta">
                     <a href={project.link} target="_blank" rel="noopener noreferrer" className="btn btn-accent">
-                        Live Demo <ExternalLink size={16} />
+                        {project.linkLabel || 'Live Demo'} <ExternalLink size={16} />
                     </a>
                     <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
                         <Github size={16} /> GitHub

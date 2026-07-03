@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "next dev -p 4000",
     "build": "NEXT_TELEMETRY_DISABLED=1 next build",
-    "start": "next start"
+    "start": "next start",
+    "generate:images": "node scripts/generate-project-images.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.24.8",

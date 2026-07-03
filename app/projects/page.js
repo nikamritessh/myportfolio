@@ -77,7 +77,7 @@ export default function ProjectsPage() {
                                         <Github size={16} /> GitHub
                                     </a>
                                     <a href={project.link} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
-                                        Live Demo <ExternalLink size={15} />
+                                        {project.linkLabel || 'Live Demo'} <ExternalLink size={15} />
                                     </a>
                                 </div>
                             </div>

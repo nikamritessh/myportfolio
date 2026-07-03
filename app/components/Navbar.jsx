@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, FileText } from 'lucide-react';
@@ -19,10 +19,32 @@ const navItems = [
 const Navbar = () => {
     const pathname = usePathname();
     const [scrolled, setScrolled] = useState(false);
+    const [hidden, setHidden] = useState(false);
     const [open, setOpen] = useState(false);
+    const lastScrollY = useRef(0);
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 12);
+        const onScroll = () => {
+            const y = window.scrollY;
+            const isMobile = window.matchMedia('(max-width: 900px)').matches;
+
+            setScrolled(y > 64);
+
+            if (isMobile) {
+                if (y <= 24) {
+                    setHidden(false);
+                } else if (y > lastScrollY.current + 6) {
+                    setHidden(true);
+                } else if (y < lastScrollY.current - 6) {
+                    setHidden(false);
+                }
+            } else {
+                setHidden(false);
+            }
+
+            lastScrollY.current = y;
+        };
+
         onScroll();
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
@@ -53,11 +75,11 @@ const Navbar = () => {
 
     return (
         <>
-        <header className={`nav-wrap ${scrolled ? 'scrolled' : ''} ${open ? 'menu-open' : ''}`}>
+        <header className={`nav-wrap ${scrolled ? 'scrolled' : ''} ${hidden && !open ? 'nav-hidden' : ''} ${open ? 'menu-open' : ''}`}>
             <nav className="nav" aria-label="Primary">
                 <Link href="/" className="nav-logo" aria-label="Home">
                     <span className="nav-logo-mark">RN</span>
-                    <span className="nav-logo-text">Ritesh Nikam</span>
+                    <span className="nav-logo-text">{site.name}</span>
                 </Link>
 
                 <div className="nav-links" role="navigation">
@@ -113,14 +135,6 @@ const Navbar = () => {
                 >
                     <div className="mobile-nav-header">
                         <span>Menu</span>
-                        <button
-                            type="button"
-                            className="mobile-nav-close"
-                            onClick={closeMenu}
-                            aria-label="Close menu"
-                        >
-                            <X size={18} />
-                        </button>
                     </div>
                     <nav className="mobile-nav-links" aria-label="Mobile">
                         {navItems.map((item) => (

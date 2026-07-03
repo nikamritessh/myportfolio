@@ -180,7 +180,8 @@ export const projects = [
         description: 'Designed a real-time IoT data logging system to collect and store sensor readings on the cloud.',
         color: '#38bdf8',
         github: 'https://github.com/nikamritessh',
-        link: 'https://example.com',
+        link: 'https://www.ijariit.com/manuscript/iot-based-data-logging-system-using-cloud/',
+        linkLabel: 'Read research paper',
         details: {
             mainDescription: "Designed a real-time IoT data logging system to collect and store sensor readings on the cloud. The system bridge physical hardware with cloud infrastructure for seamless monitoring.",
             extendedDescription: "Ensured scalability and reliability for continuous sensor data ingestion. The architecture focuses on low-latency data transmission and robust storage for industrial or personal use cases.",
@@ -580,7 +581,7 @@ export const techCategories = [
 export const caseStudies = [
     {
         id: '01',
-        year: '2025',
+        year: '2024',
         title: 'IoT-Based Data Logging System Using Cloud',
         category: 'IoT & Cloud Computing',
         problem: 'Industrial sectors lacked a reliable 24/7 real-time monitoring system for operational variables, relying on error-prone manual logging.',

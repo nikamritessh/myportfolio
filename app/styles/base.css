@@ -12,7 +12,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--nav-height) + var(--space-5));
+  scroll-padding-top: var(--nav-top-offset);
   -webkit-text-size-adjust: 100%;
   background-color: var(--bg-primary);
 }

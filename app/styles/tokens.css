@@ -67,6 +67,9 @@
   --content-narrow: 960px;
   --content-reading: 640px;
   --nav-height: 64px;
+  --nav-height-compact: 52px;
+  --nav-float-gap: 16px;
+  --nav-top-offset: calc(var(--nav-height) + var(--nav-float-gap) + var(--space-6));
   --gutter: 24px;
   --section-padding: var(--space-9);
 

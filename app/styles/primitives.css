@@ -38,7 +38,7 @@
 }
 
 .page-top {
-  padding-top: calc(var(--nav-height) + var(--space-8));
+  padding-top: var(--nav-top-offset);
 }
 
 .page-stack {

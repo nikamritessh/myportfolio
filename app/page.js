@@ -8,6 +8,7 @@ import {
     ExternalLink,
 } from 'lucide-react';
 import Reveal from './components/Reveal';
+import HeroAside from './components/HeroAside';
 import SmartImage from './components/SmartImage';
 import TechTabs from './components/TechTabs';
 import { getProjectsWithSlugs } from './utils/projects';
@@ -36,7 +37,6 @@ const featurePoints = {
 export default function Home() {
     const projects = getProjectsWithSlugs();
     const featured = projects.slice(0, 3);
-    const heroProject = projects[1];
     const recentRoles = experiences.slice(0, 3);
     const stats = getPortfolioStats();
 
@@ -92,17 +92,9 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <div className="hero-visual">
-                        <div className="hero-shot">
-                            <SmartImage
-                                src={heroProject.image}
-                                alt={`${heroProject.title} product screenshot`}
-                                monogram={heroProject.title}
-                                priority
-                                sizes="(max-width: 900px) 100vw, 520px"
-                            />
-                        </div>
-                    </div>
+                    <Reveal className="hero-visual" delay={0.08}>
+                        <HeroAside />
+                    </Reveal>
                 </div>
             </section>
 
