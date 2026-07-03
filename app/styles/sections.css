@@ -414,11 +414,10 @@
   display: flex;
   gap: var(--space-2);
 }
-/* Hero screenshot — flat, no framed box */
+/* Hero aside column — no fixed aspect ratio */
 .hero-visual {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
 }
 
 .hero-shot {
