@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "next dev -p 4000",
-    "build": "NEXT_TELEMETRY_DISABLED=1 next build",
+    "build": "NEXT_TELEMETRY_DISABLED=1 next build --webpack",
     "start": "next start",
     "generate:images": "node scripts/generate-project-images.mjs"
   },

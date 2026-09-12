@@ -2,9 +2,11 @@
 const nextConfig = {
   /* config options here */
   reactCompiler: true,
-  outputFileTracingIncludes: {
-    '/resume': ['./cv.tex'],
-    '/api/resume': ['./cv.tex'],
+  outputFileTracingExcludes: {
+    '*': [
+      '.pnpm-store/**',
+      '**/.pnpm-store/**',
+    ],
   },
 };
 
