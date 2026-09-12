@@ -31,8 +31,7 @@ export const site = {
     relocation: 'Open',
     responseTime: 'Within 24 hours',
   },
-  /** Resume PDF — opens directly in browser */
-  resumePdf: '/resume/Ritessh_resume.pdf',
+  resumePdf: '/resume',
 };
 
 /** Opens Gmail compose in a new browser tab */

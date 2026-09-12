@@ -1,9 +1,8 @@
 import './globals.css';
 import './mobile.css';
 import { IBM_Plex_Sans } from 'next/font/google';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import PageTransition from './components/PageTransition';
+import { Agentation } from 'agentation';
+import SiteChrome from './components/SiteChrome';
 import { ThemeProvider } from './context/ThemeContext';
 
 const ibmPlex = IBM_Plex_Sans({
@@ -84,13 +83,9 @@ export default function RootLayout({ children }) {
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body suppressHydrationWarning>
-        <a href="#main-content" className="skip-link">
-          Skip to main content
-        </a>
         <ThemeProvider>
-          <Navbar />
-          <PageTransition>{children}</PageTransition>
-          <Footer />
+          <SiteChrome>{children}</SiteChrome>
+          {process.env.NODE_ENV === 'development' && <Agentation />}
         </ThemeProvider>
       </body>
     </html>

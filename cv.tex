@@ -1,0 +1,208 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[scaled=0.95]{helvet}
+\usepackage{microtype}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{needspace}
+
+\definecolor{BodyText}{HTML}{222222}
+\definecolor{MutedText}{HTML}{444444}
+\definecolor{LinkBlue}{HTML}{1565C0}
+\definecolor{SectionRule}{HTML}{9E9E9E}
+
+\usepackage[colorlinks=true,urlcolor=LinkBlue,linkcolor=LinkBlue,citecolor=LinkBlue]{hyperref}
+
+\renewcommand{\familydefault}{\sfdefault}
+\color{BodyText}
+\linespread{1.06}\selectfont
+
+\pagestyle{empty}
+\raggedright
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\tabcolsep}{0in}
+
+%----------LIST SPACING----------
+\setlist[itemize]{topsep=2pt, itemsep=2.5pt, parsep=0pt, partopsep=0pt}
+
+%----------SECTION FORMAT----------
+\titleformat{\section}{
+  \vspace{5pt}\bfseries\large\raggedright
+}{}{0em}{}[\vspace{2pt}{\color{SectionRule}\hrule height 0.5pt}\vspace{5pt}]
+\titlespacing*{\section}{0pt}{2pt}{1pt}
+
+%----------CUSTOM COMMANDS----------
+\newcommand{\resumeItem}[1]{\item \small{#1}}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{3pt}\item
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \small\mbox{#2} \\
+      \textit{\small\color{MutedText}#3} & \textit{\small\color{MutedText}#4} \\
+    \end{tabular*}
+  \vspace{1pt}
+}
+
+\newcommand{\resumeProjectHeading}[1]{
+  \vspace{3pt}\item \textbf{#1}
+  \vspace{1pt}
+}
+
+\newcommand{\resumeTechStack}[1]{
+  \item[]{\footnotesize\textit{\color{MutedText}Tech Stack:} \textit{\color{MutedText}#1}}
+}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.1in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.18in, label=\textbullet, itemsep=2.5pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}}
+
+\newenvironment{resumeProject}[2]{%
+  \Needspace{11\baselineskip}%
+  \resumeProjectHeading{#1}%
+  \resumeTechStack{#2}%
+  \nopagebreak[4]%
+  \resumeItemListStart
+}{%
+  \resumeItemListEnd
+}
+
+\newcommand{\resumeSkillLine}[2]{\small\textbf{#1:} #2}
+
+\newcommand{\resumeEducationLine}[4]{
+  \textbf{#1} \hfill \mbox{#2} \\
+  \textit{\color{MutedText}#3} \hfill \textit{\color{MutedText}#4}
+}
+
+%----------DOCUMENT START----------
+\begin{document}
+
+%----------HEADER----------
+\begin{center}
+  {\LARGE\bfseries Ritesh Nikam} \\[5pt]
+  {\normalsize Software Engineer \textbar{} Full Stack Developer \textbar{} AI \& 3D Web Development} \\[6pt]
+  {\small\color{MutedText}
+    Mumbai, Maharashtra \textbar{}
+    +91 9136788710 \textbar{}
+    \href{https://mail.google.com/mail/?view=cm\&fs=1\&to=nikamritesh778@gmail.com}{nikamritesh778@gmail.com} \\[3pt]
+    \href{https://ritesshnikam.vercel.app/}{Portfolio} \textbar{}
+    \href{https://www.linkedin.com/in/ritessh-nikam}{LinkedIn} \textbar{}
+    \href{https://github.com/nikamritessh}{GitHub}
+  }
+\end{center}
+
+%----------SUMMARY----------
+\section{Professional Summary}
+\small
+Full Stack Software Engineer and AI Engineer with hands-on experience building production web applications using React/Next.js, TypeScript, JavaScript, Python, FastAPI, PostgreSQL, and REST APIs. Experienced in end-to-end application development, component-based UI, API integration, authentication, database design, testing, debugging, and deployment. Strong interest in interactive 3D web applications and browser-based visualization, with foundational knowledge of 3D geometry, vectors, matrices, transformations, camera concepts, and real-time rendering. Experienced in AI-assisted software development using Claude Code and agentic coding workflows for implementation, debugging, testing, and refactoring.
+
+%----------SKILLS----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.1in, label={}, itemsep=2pt]
+  \item \resumeSkillLine{Languages}{C, C++, Java, Python, JavaScript, TypeScript, HTML, CSS}
+  \item \resumeSkillLine{Frontend \& Web}{React.js, Next.js, Tailwind CSS, Flutter, PWA, Component-Based UI, Responsive Web Development}
+  \item \resumeSkillLine{3D \& Graphics Fundamentals}{3D Coordinate Systems, Vectors \& Matrices, 3D Transformations, Geometry, Camera Concepts, Scene Graph Fundamentals, Real-Time Rendering Concepts, Raycasting Concepts}
+  \item \resumeSkillLine{Backend \& APIs}{FastAPI, Node.js, PHP, REST API Development, API Integration, Authentication, OAuth}
+  \item \resumeSkillLine{Databases}{PostgreSQL, MySQL, Prisma ORM, Supabase, Database Modeling}
+  \item \resumeSkillLine{AI \& AI-Assisted Development}{OpenAI GPT, Google Gemini, Anthropic Claude, Claude Code, Prompt Engineering, LLM Tool Calling, RAG, NLP}
+  \item \resumeSkillLine{Tools \& DevOps}{Git, Agile/Scrum, CI/CD, Testing, Debugging, Production Deployment, MQTT}
+  \item \resumeSkillLine{Security}{Vulnerability Assessment, Penetration Testing, VAPT, CWE Analysis, Information Security}
+  \item \resumeSkillLine{Currently Exploring}{Three.js, WebGL, Browser-Based 3D Visualization, Procedural 3D Geometry}
+\end{itemize}
+
+%----------WORK EXPERIENCE----------
+\section{Work Experience}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{Software Engineer (Full-time)}{June 2025 -- Present}
+{Singularity Technologies}{Mumbai, India}
+\resumeTechStack{Next.js, React, TypeScript, FastAPI, Python, Prisma, PostgreSQL, OpenAI GPT, Google Gemini, Anthropic Claude, MCP, Self-hosted LLMs, AI Agents, REST APIs, PWA}
+\resumeItemListStart
+\resumeItem{Promoted to full-time Software Engineer after internship for consistent delivery across multiple production products.}
+\resumeItem{Engineered and shipped full-stack features for \textbf{OutCallerAI} using React/Next.js, TypeScript, FastAPI, Python, and REST APIs.}
+\resumeItem{Translated product requirements into reusable frontend components, backend APIs, database models, and production-ready application features.}
+\resumeItem{Designed and integrated REST APIs between frontend applications and Python/FastAPI backend services.}
+\resumeItem{Implemented authentication, role-based workflows, API integrations, validation, debugging, and application-level error handling.}
+\resumeItem{Architected and independently built an internal \textbf{Attendance \& Leave Management System (PWA)} from requirements through deployment readiness.}
+\resumeItem{Delivered 3 role-based dashboards (Directors, HR, Employees) with authentication, geo-location attendance, leave approvals, HR reporting, notifications, and responsive UI.}
+\resumeItem{Owned Prisma schema design, backend APIs, frontend implementation, testing, debugging, and production deployment activities for the attendance platform.}
+\resumeItem{Integrated \textbf{OpenAI GPT}, \textbf{Google Gemini}, and \textbf{Anthropic Claude} into conversational AI workflows, including prompt engineering and tool calling.}
+\resumeItem{Contributed to \textbf{MCP (Model Context Protocol)} server implementation for structured AI tool access and safer agent--system integrations.}
+\resumeItem{Worked on self-hosted LLM model setup and integration to support private/on-prem inference alongside cloud AI providers.}
+\resumeItem{Built and improved AI automation agents and LLM-driven workflows, including prompt design, tool calling, and backend orchestration.}
+\resumeItem{Used AI-assisted development workflows with Claude Code for feature implementation, debugging, refactoring, and development productivity.}
+\resumeItemListEnd
+
+\resumeSubheading
+{Software Developer Intern}{Aug 2024 -- Jan 2025}
+{Singularity Technologies}{Mumbai, India}
+\resumeTechStack{React, Next.js, VAPT, Penetration Testing, Agile/Scrum}
+\resumeItemListStart
+\resumeItem{Developed and shipped reusable React/Next.js components for internal and client-facing applications across Agile sprint cycles.}
+\resumeItem{Developed frontend modules for \textbf{OutRiskAI} and independently owned the design and implementation of the company website.}
+\resumeItem{Worked with component-based UI development and responsive web interfaces.}
+\resumeItem{Executed penetration tests and authored VAPT reports for the \textbf{Hiranandani Security Assessment Project}.}
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%----------PROJECTS----------
+\section{Projects}
+\resumeSubHeadingListStart
+
+\begin{resumeProject}{Omni -- AI-Powered Personal Workspace}{Next.js 16, React 19, TypeScript, Prisma, Auth.js, OpenAI GPT-4o, Google Gemini, OAuth, RAG, SSE Streaming}
+\resumeItem{Built a full-stack AI workspace using TypeScript, React/Next.js, Prisma, authentication, and API integrations.}
+\resumeItem{Designed modular component-based frontend interfaces and backend services for files, tasks, email, AI interactions, and external integrations.}
+\resumeItem{Implemented real-time SSE streaming, LLM tool routing, RAG pipelines, document retrieval, embeddings, and structured AI workflows.}
+\resumeItem{Engineered multi-source search across \textbf{Google Drive}, \textbf{Gmail}, and a local Library with ranked results, rich UI components, and secure server-side file preview.}
+\resumeItem{Implemented AI tools for PDF extraction with structured field parsing, document summarization, planner task creation, and email workflows.}
+\resumeItem{Connected \textbf{Google}, \textbf{Dropbox}, \textbf{OneDrive}, and \textbf{Notion} through OAuth-based integrations and built Library, Spaces, Planner, voice, and theme functionality.}
+\end{resumeProject}
+
+\begin{resumeProject}{Widget -- AI Marketing \& Customer Engagement Assistant}{LLM Orchestration, Omnichannel APIs, REST Integrations, RBAC, Audit Logging, Workflow Automation}
+\resumeItem{Built an AI customer engagement platform that answers business queries, executes API-driven actions, and escalates conversations to human agents.}
+\resumeItem{Unified 6 communication channels into a single customer engagement interface.}
+\resumeItem{Automated CRM synchronization, lead capture, appointment scheduling, payment links, order tracking, and custom REST API workflows through LLM actions.}
+\resumeItem{Engineered a secure Action Engine with RBAC, audit logging, identity verification, and Human Takeover with complete conversation history.}
+\end{resumeProject}
+
+\begin{resumeProject}{IoT-Based Data Logging System Using Cloud}{Next.js, Tailwind CSS, Supabase, MQTT, Wi-Fi}
+\resumeItem{Built a real-time IoT data pipeline collecting sensor data over Wi-Fi/MQTT and storing records in Supabase Cloud.}
+\resumeItem{Developed a Next.js monitoring interface for visualizing and monitoring incoming sensor data.}
+\resumeItem{Designed the system for continuous data ingestion, cloud storage, and browser-based monitoring.}
+\end{resumeProject}
+
+\resumeSubHeadingListEnd
+
+%----------EDUCATION----------
+\section{Education}
+\vspace{2pt}
+\resumeEducationLine{B.Tech in Computer Engineering}{2025}{Vishwakarma University}{CGPA: 7.15} \\[3pt]
+\resumeEducationLine{12th Science (HSC)}{2021}{MIT ADT, Pune}{75\%}
+
+%----------CERTIFICATIONS----------
+\section{Certifications}
+\resumeItemListStart
+\resumeItem{\textbf{Claude Code in Action}, Anthropic Academy (2026) \textbar{} \href{https://verify.skilljar.com/c/mtsmac58xeqe}{Verify Certificate}}
+\resumeItem{Java Full Stack Course (June 2024); Software Development Fundamentals (April 2024); Supply Chain Management (April 2024)}
+\resumeItem{Published research paper: \href{https://www.ijariit.com/manuscript/iot-based-data-logging-system-using-cloud/}{IoT-Based Data Logging System Using Cloud} (IJARIIT, 2024)}
+\resumeItemListEnd
+
+%----------ACHIEVEMENTS----------
+\section{Achievements}
+\resumeItemListStart
+\resumeItem{Received official Government of India acknowledgment for responsibly disclosing CWE-287 authentication vulnerabilities.}
+\resumeItemListEnd
+
+%----------LANGUAGES----------
+\section{Languages}
+\small English, Hindi, Marathi
+
+\end{document}
